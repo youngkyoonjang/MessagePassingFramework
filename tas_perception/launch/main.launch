@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<launch>
+
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+        <arg name="align_depth" value="true"/>
+        <arg name="initial_reset" value="true"/>
+    </include>
+    
+    <!-- <node pkg="tas_perception" type="tas_face_rec.py" name="tas_face" /> -->
+    <!-- <node pkg="tas_perception" type="tas_mmdetection.py" name="tas_object" /> -->
+    <!-- <node pkg="tas_perception" type="tas_mmpose.py" name="tas_pose" /> -->
+    <!-- <node pkg="tas_perception" type="tas_readiness_detector.py" name="tas_readiness" />  -->
+    <!-- <node pkg="tas_perception" type="tas_trust_act_recognition.py" name="tas_trust_act" /> -->
+
+    <node pkg="tas_perception" type="tas_hand.py" name="tas_hand" />
+
+    <!-- <node pkg="tas_perception" type="tas_perceptor_RF.py" name="tas_main" />     -->
+
+</launch>
