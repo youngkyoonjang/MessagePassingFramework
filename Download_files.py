@@ -79,4 +79,6 @@ hand_model_directory_path = "./tas_perception/hand_object/models"
 if(os.path.isfile(hand_model_directory_path+'/faster_rcnn_1_8_89999.pth') == False):
     file_id = '166IM6CXA32f9L6V7-EMd9m8gin6TFpim'
     destination = hand_model_directory_path+'/faster_rcnn_1_8_89999.pth'
+    print('./tas_perception/hand_object/models/faster_rcnn_1_8_89999.pth is downloading please wait until it is completed!')
     download_file_from_google_drive(file_id, destination)
+    print('./tas_perception/hand_object/models/faster_rcnn_1_8_89999.pth download complete!!')
