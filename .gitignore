@@ -129,5 +129,4 @@ dmypy.json
 .pyre/
 
 # PyTorch models
-./tas_perception/hand_object/models/*
-./tas_perception/models/*
+*.pth
