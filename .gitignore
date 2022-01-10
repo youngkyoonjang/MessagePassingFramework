@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# PyTorch models
+./tas_perception/hand_object/models/*
+./tas_perception/models/*
