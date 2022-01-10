@@ -14,10 +14,9 @@ that you can download from: https://github.com/open-mmlab/mmdetection/blob/maste
 for object detection. 
 You can also download other model config and model from the mmdetection website: https://github.com/open-mmlab/mmdetection
 
-You need to change the path for your downloaded path in the line 16 of Makefile:
-/home/youngkyoon/Desktop/DataDisk/dev/MessagePassingFramework/tas_perception:/ros-ws/src/tas_perception/ \
 
-
-In order to run:
+In order to run: python Do_necessary_settings_build_and_run.py
+This will do following:
 1. Download model files: python Download_files.py 
-2. Build Docker install: make build && make run
+1. Download model files: python Replace_perception_folder_path_in_Makefile.py
+2. Build Docker and run: make build && make run

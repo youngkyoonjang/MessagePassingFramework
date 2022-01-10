@@ -2,9 +2,6 @@ import os
 
 def replace_the_first_line(file_name, line):
     """ Insert given string as a new line at the beginning of a file """
-    # define name of temporary dummy file
-    dummy_file = file_name + '.bak'
-    # open original file in read mode and dummy file in write mode
     with open(file_name, "r") as f:
         contents = f.readlines()
 
