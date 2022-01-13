@@ -163,6 +163,7 @@ catkin_install_python(PROGRAMS
   scripts/tas_mmdetection.py
   scripts/tas_mmpose.py
   scripts/tas_hand.py
+  scripts/tas_gaze.py
   # scripts/tas_readiness_detector.py
   # scripts/tas_trust_act_recognition.py  
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}

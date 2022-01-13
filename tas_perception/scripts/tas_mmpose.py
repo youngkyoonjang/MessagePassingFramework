@@ -300,7 +300,7 @@ def main():
         help='Root of the output video file. '
         'Default not saving the visualization video.')
     parser.add_argument(
-        '--device', default='cuda:1', help='Device used for inference')
+        '--device', default='cuda:0', help='Device used for inference')
     parser.add_argument(
         '--det-cat-id',
         type=int,

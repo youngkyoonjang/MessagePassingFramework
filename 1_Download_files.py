@@ -36,7 +36,6 @@ if(os.path.isfile(models_directory_path+'/hrnet_w48_coco_256x192-b9e0b3ab_202007
 
 
 # Download Hand-Object State Estimation model: FasterRCNN
-### !! Warning: This should be in a private cloud storage. This model file should be relocated into available location (e.g. PRL server)
 
 # -------------------------------------------------- Downloading googld drive file
 import requests
@@ -79,3 +78,11 @@ if(os.path.isfile(hand_model_directory_path+'/faster_rcnn_1_8_89999.pth') == Fal
     print('./tas_perception/hand_object/models/faster_rcnn_1_8_89999.pth is downloading please wait until it is completed!')
     download_file_from_google_drive(file_id, destination)
     print('./tas_perception/hand_object/models/faster_rcnn_1_8_89999.pth download complete!!')
+
+# Download rt_gene model /rt_gene_/model_nets folder
+os.system('mkdir ./rt_gene/model_nets')
+os.system('mkdir ./rt_gene/model_nets/SFD')
+os.system('mkdir ./rt_gene/model_nets/ThreeDDFA')
+from rt_gene.download_tools import download_external_landmark_models, download_gaze_tensorflow_models
+download_external_landmark_models()
+download_gaze_tensorflow_models()

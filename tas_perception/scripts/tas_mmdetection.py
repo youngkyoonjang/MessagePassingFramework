@@ -121,7 +121,7 @@ class MMDetection_YJ:
 
 
         device = torch.device(args.device)
-        # device = torch.device("cuda:1")
+        # device = torch.device("cuda:0")
         
         self.model = init_detector(args.config, args.checkpoint, device=device)
 

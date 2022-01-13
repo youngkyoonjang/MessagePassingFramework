@@ -131,4 +131,11 @@ dmypy.json
 # PyTorch models
 tas_perception/hand_object/models/*
 tas_perception/models/*
+rt_gene/model_nets/*
+rt_gene/sample_images/*
 *.pth
+*.pkl
+*.h5
+*.dat
+*.tar
+*.mp4

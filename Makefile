@@ -13,7 +13,7 @@ run:
 		-v "/tmp/.X11-unix:/tmp/.X11-unix:rw" \
 		-v /dev:/dev \
 		-v /etc/hosts:/etc/hosts \
-		-v /media/DataDisk/yj_bitbucket/dev/MessagePassingFramework/tas_perception/:/ros-ws/src/tas_perception/ \
+		-v /home/youngkyoon/Desktop/DataDisk/dev/MessagePassingFramework/tas_perception/:/ros-ws/src/tas_perception/ \
 		--network host \
 		--privileged \
 		--runtime=nvidia \

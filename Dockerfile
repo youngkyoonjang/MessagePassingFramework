@@ -146,7 +146,7 @@ RUN git clone https://github.com/ddshan/hand_object_detector /hand_object_detect
 WORKDIR /
 
 ## removing opencv-python line from /hand_object_detector/requirements.txt
-COPY /tas_perception/scripts_helper_in_install/remove_opencv_from_a_file.py /hand_object_detector/remove_opencv_from_a_file.py
+COPY /scripts_helper_in_install/remove_opencv_from_a_file.py /hand_object_detector/remove_opencv_from_a_file.py
 COPY /tas_perception/hand_object/net_utils.py /hand_object_detector/lib/model/utils/net_utils.py
 WORKDIR /hand_object_detector
 RUN python remove_opencv_from_a_file.py 
@@ -157,6 +157,23 @@ RUN pip install -r requirements.txt
 RUN cd lib && pip install --no-cache-dir -e .
 
 
+################################################################################################################
+####################################### HAND_CONTACT_STATE INSTALLATION ########################################
+################################################################################################################
+RUN pip install tensorflow-gpu scipy tqdm Pillow matplotlib
+
+RUN git clone https://github.com/Tobias-Fischer/rt_gene.git /rt_gene
+ENV PYTHONPATH "${PYTHONPATH}:/rt_gene/rt_gene/src"
+
+# copy rt_gene models to rt_gene folder
+COPY rt_gene/model_nets /rt_gene/rt_gene/model_nets
+# copy test samples
+COPY rt_gene/sample_images /rt_gene/rt_gene_standalone/samples_gaze
+
+COPY /scripts_helper_in_install/comment_download_line_from_rt_gene.py /rt_gene/rt_gene/src/rt_gene/comment_download_line_from_rt_gene.py
+WORKDIR /rt_gene/rt_gene/src/rt_gene
+RUN python comment_download_line_from_rt_gene.py 
+
 SHELL ["/bin/bash", "-c"]
 WORKDIR /ros-ws
 
@@ -164,7 +181,6 @@ WORKDIR /ros-ws
 # RUN pip install \
 #     sklearn \
 #     face_recognition
-
 
 
 RUN mkdir src 

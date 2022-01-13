@@ -2,21 +2,17 @@
 Message Passing Framework for Vision Prediction Stability in HRI
 
 # Requirements 
-Docker is required.
 RGB-D camera is required. Specifically we tested using Inteal RealSense D435.
 
+# Running Instruction: 
+1. Download github repository: git clone https://github.com/youngkyoonjang/MessagePassingFramework.git
+2. Change parameters depending on what you want to run in '0_Do_necessary_settings_build_and_run.py':
+If you want to run pose estimation using the first GPU: --pose T:0 --object F:0 --hand F:0 --gaze F:0
+If you want to run both object detection on the first GPU and hand-object state estimation on the second GPU: --pose F:0 --object T:0 --hand T:1 --gaze F:0
+Keep in mind that each model requires GPU memory to load their models, so you are only able to run modules depending on your GPU memory capacity.
+3. Do everything else: python 0_Do_necessary_settings_build_and_run.py
 
-In the process of docker installation, this script will download:
-YOLACT config file_dependency: https://raw.githubusercontent.com/open-mmlab/mmdetection/master/configs/yolact/yolact_r50_1x8_coco.py
-YOLACT config file: https://raw.githubusercontent.com/open-mmlab/mmdetection/master/configs/yolact/yolact_r101_1x8_coco.py
-YOLACT model file: https://download.openmmlab.com/mmdetection/v2.0/yolact/yolact_r101_1x8_coco/yolact_r101_1x8_coco_20200908-4cbe9101.pth
-that you can download from: https://github.com/open-mmlab/mmdetection/blob/master/configs/yolact/README.md
-for object detection. 
-You can also download other model config and model from the mmdetection website: https://github.com/open-mmlab/mmdetection
-
-
-In order to run: python Do_necessary_settings_build_and_run.py
-This will do following:
-1. Download model files: python Download_files.py 
-1. Download model files: python Replace_perception_folder_path_in_Makefile.py
-2. Build Docker and run: make build && make run
+# Notes: 
+* It is still work-in-progress repository. Please keep it confidential. I am sharing this only within PRL Lab only.
+* It has some additional features, such as message passsing between modules using ROS publisher/subscriber. And I am willing to update it as requested by PRL Lab members. So feel free to share your request to use this repository. If it is already there, I will put more explanation how to access the data. Otherwise, I can add the functionality and share it for you. 
+* If you found other modules useful, ask me to consider. Then, I will update it throughout my stay at PRL.
