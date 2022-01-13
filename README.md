@@ -7,9 +7,9 @@ RGB-D camera is required. Specifically we tested using Inteal RealSense D435.
 # Running Instruction: 
 1. Download github repository: git clone https://github.com/youngkyoonjang/MessagePassingFramework.git
 2. Change parameters depending on what you want to run in '0_Do_necessary_settings_build_and_run.py':
-If you want to run pose estimation using the first GPU: --pose T:0 --object F:0 --hand F:0 --gaze F:0
-If you want to run both object detection on the first GPU and hand-object state estimation on the second GPU: --pose F:0 --object T:0 --hand T:1 --gaze F:0
-Keep in mind that each model requires GPU memory to load their models, so you are only able to run modules depending on your GPU memory capacity.
+* If you want to run pose estimation using the first GPU: --pose T:0 --object F:0 --hand F:0 --gaze F:0
+* If you want to run both object detection on the first GPU and hand-object state estimation on the second GPU: --pose F:0 --object T:0 --hand T:1 --gaze F:0
+* Keep in mind that each model requires GPU memory to load their models, so you are only able to run modules depending on your GPU memory capacity.
 3. Do everything else: python 0_Do_necessary_settings_build_and_run.py
 
 # Notes: 
