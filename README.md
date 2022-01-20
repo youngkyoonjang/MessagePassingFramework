@@ -2,7 +2,7 @@
 Message Passing Framework for Vision Prediction Stability in HRI
 
 # Requirements 
-RGB-D camera is required. Specifically we tested using Intel RealSense D435 and L515.
+RGB-D camera is required. Specifically we tested using Intel RealSense D435, D455 and L515.
 
 # Running Instruction: 
 1. Download github repository: git clone https://github.com/youngkyoonjang/MessagePassingFramework.git
