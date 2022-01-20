@@ -167,8 +167,8 @@ ENV PYTHONPATH "${PYTHONPATH}:/rt_gene/rt_gene/src"
 
 # copy rt_gene models to rt_gene folder
 COPY rt_gene/model_nets /rt_gene/rt_gene/model_nets
-# copy test samples
-COPY rt_gene/sample_images /rt_gene/rt_gene_standalone/samples_gaze
+# # copy test samples
+# COPY rt_gene/sample_images /rt_gene/rt_gene_standalone/samples_gaze
 
 COPY /scripts_helper_in_install/comment_download_line_from_rt_gene.py /rt_gene/rt_gene/src/rt_gene/comment_download_line_from_rt_gene.py
 WORKDIR /rt_gene/rt_gene/src/rt_gene
