@@ -4,7 +4,7 @@ Message Passing Framework for Vision Prediction Stability in HRI
 # Requirements 
 RGB-D camera is required.
 Specifically we have tested using following devices:
-- Cameras: Intel RealSense D435, D455 and L515.
+- Cameras: Intel RealSense D435, D455 and L515. (Intel RealSense cameras require sufficient power to capture images. Please connect it to the main desktop or laptop ports instaed of a USB hub.)
 - GPUs: NVIDIA GeForce RTX 3070-8.0GB, Nvidia GeForce RTX 3060 and NVIDIA GeForce RTX 2080 Ti (slow)
 
 
