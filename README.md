@@ -2,13 +2,18 @@
 Message Passing Framework for Vision Prediction Stability in HRI
 
 # Requirements 
-RGB-D camera is required. Specifically we tested using Intel RealSense D435, D455 and L515.
+RGB-D camera is required.
+Specifically we have tested using following devices:
+- Cameras: Intel RealSense D435, D455 and L515.
+- GPUs: NVIDIA GeForce RTX 3070-8.0GB, Nvidia GeForce RTX 3060 and NVIDIA GeForce RTX 2080 Ti (slow)
+
 
 # Prerequisite (or note): 
-0. If you cannot clone this repository using 'git clone', please download the entire repository. It happens because it is currently private.
-1. You need to install pip or pip3 (e.g., if you use python3, 'sudo apt-get install python3-pip')
-2. The code is designed to use 'python' command. If your OS only support python3, do 'Find & Replace' from 'python ' to 'python3 '.
-3. If you see error message related to'RuntimeError: Not compiled with GPU support' when testing --hand, you need to change stable version docker command. (It needs to be discussed with Cedric).
+1. Install Docker: https://docs.docker.com/engine/install/ubuntu/
+2. If you cannot clone this repository using 'git clone', please download the entire repository. It happens because it is currently private.
+3. You need to install pip or pip3 (e.g., if you use python3, 'sudo apt-get install python3-pip')
+4. The code is designed to use 'python' command. If your OS only support python3, do 'Find & Replace' from 'python ' to 'python3 '.
+5. If you see error message related to'RuntimeError: Not compiled with GPU support' when testing --hand, you need to change stable version docker command. (It needs to be discussed with Cedric).
 
 # Running Instruction: 
 1. Download github repository: git clone https://github.com/youngkyoonjang/MessagePassingFramework.git
