@@ -275,6 +275,8 @@ class TAS_Integrator_YJ:
     def start(self):
         while not rospy.is_shutdown():
             if self.img is not None:
+                cv2.namedWindow('integrator_hand')        # Create a named window
+                cv2.moveWindow('integrator_hand', 1500,600)  # Move it to (40,30)
                 # self.pub_img.publish(self.br.cv2_to_imgmsg(self.image, encoding="rgb8"))
 
                 # # cv2.namedWindow('Body', cv2.WINDOW_NORMAL)

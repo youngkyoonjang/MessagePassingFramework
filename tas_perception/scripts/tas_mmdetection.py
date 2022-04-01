@@ -554,6 +554,8 @@ class MMDetection_YJ:
             #     self.random_rotation[2] = 0
 
             # if self.img is not None:
+            cv2.namedWindow('Instances')        # Create a named window
+            cv2.moveWindow('Instances', 10,600)  # Move it to (40,30)
             if self.images is not None:
                 # self.pub_img.publish(self.br.cv2_to_imgmsg(self.image, encoding="rgb8"))
 

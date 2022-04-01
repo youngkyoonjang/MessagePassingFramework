@@ -244,6 +244,8 @@ class MMPose_YJ:
                 # self.pub_img.publish(self.br.cv2_to_imgmsg(self.image, encoding="rgb8"))
 
                 # cv2.namedWindow('Body', cv2.WINDOW_NORMAL)
+                cv2.namedWindow('Body')        # Create a named window
+                cv2.moveWindow('Body', 10,100)  # Move it to (40,30)
                 # show the results
                 if self.pose_results is not None:
                     self.img = vis_pose_result(

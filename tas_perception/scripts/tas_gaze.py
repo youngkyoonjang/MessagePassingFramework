@@ -329,12 +329,18 @@ class RT_GENE_GAZE_YJ:
     def start(self):
         while not rospy.is_shutdown():
             if self.img is not None:
+                cv2.namedWindow('Gaze')        # Create a named window
+                cv2.moveWindow('Gaze', 1110,100)  # Move it to (40,30)
                 cv2.imshow('Gaze', self.img)
                 key = cv2.waitKey(1)
             if self.head_pose_image is not None:
+                cv2.namedWindow('head')        # Create a named window
+                cv2.moveWindow('head', 720,250)  # Move it to (40,30)
                 cv2.imshow('head',  self.head_pose_image)
                 key = cv2.waitKey(1)
             if self.s_gaze_img is not None:
+                cv2.namedWindow('gaze')        # Create a named window
+                cv2.moveWindow('gaze', 720,100)  # Move it to (40,30)
                 cv2.imshow('gaze',  self.s_gaze_img)
                 key = cv2.waitKey(1)
                
