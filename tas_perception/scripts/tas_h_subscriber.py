@@ -113,31 +113,10 @@ class TAS_Integrator_YJ:
     def hand_json_callback(self, msg):
         try:
             loaded_dictionary_hand = json.loads(msg.data)
-        except CvBridgeError:
-            print("e")
-        else:
+
             self.hand_json = loaded_dictionary_hand
             # print('b', self.hand_json)
 
-    # from dateutil.parser import parse
-    # def image_callback(msg1, msg2, msg3):
-    def image_callback(self, msg1, msg2):
-        try:
-            # Convert your ROS Image message to OpenCV2 for color
-            color_img = self.bridge.imgmsg_to_cv2(msg1, "bgr8")
-            cv2_img = cv2.resize(color_img, (int(color_img.shape[1]/2), int(color_img.shape[0]/2)))
-
-            
-            # Convert your ROS Image message to OpenCV2 for depth
-            depth_image = self.bridge.imgmsg_to_cv2(msg2, desired_encoding="passthrough")
-            depth_array = np.array(depth_image, dtype=np.float32)
-
-            # grey_color = 153
-            depth_image_3d = np.dstack((depth_array,depth_array,depth_array)) #depth image is 1 channel, color is 3 channels
-            cv2_depth_img = cv2.resize(depth_image_3d, (int(depth_image_3d.shape[1]/2), int(depth_image_3d.shape[0]/2)))
-            depth_colormap = cv2.applyColorMap(cv2.convertScaleAbs(cv2_depth_img, alpha=0.03), cv2.COLORMAP_JET)
-
-            depth_img = depth_colormap
 
             # self.instance_json = json.loads(msg3.data)
             integrated_data_tmp_for_saving={}
@@ -178,6 +157,74 @@ class TAS_Integrator_YJ:
                 print("hand okay-----------------------------------------------")
             if(self.hand_json!=None and self.instance_json!=None and self.body_json!=None):
                 print(integrated_data_tmp_for_saving)
+        except CvBridgeError:
+            print("e")
+        else:
+                
+            if(self.hand_json!=None):
+                ## yjang inserted for visualising Hand-Object State Estimation output from the integrated results
+
+              
+
+                # self.hand_states = integrated_data[i_cnt]['hand_states']
+                mask_tmp_ = []
+                # if(0<len(self.hand_states['hands'])):
+                if(0<len(self.hand_json[0]['hands'])):  
+                    for i in range(0, len(self.hand_json[0]['hands'])):
+                        individual_hand_info_tmp = self.hand_json[0]['hands'][i]
+                        hand_bbox = individual_hand_info_tmp['bbox']
+                        hand_state = individual_hand_info_tmp['state']
+                        hand_side = individual_hand_info_tmp['side_id']
+                        print(self.hand_json[0]['hands'][i])
+
+                        cv2.rectangle(self.img, (hand_bbox[0], hand_bbox[1]), (hand_bbox[2], hand_bbox[3]), color=self.hand_rgb[hand_side], thickness=4)
+                        cv2.rectangle(self.img, (hand_bbox[0], max(0, hand_bbox[1]-30)), (hand_bbox[0]+62, max(0, hand_bbox[1]-30)+30), color=self.hand_rgb[hand_side], thickness=4)
+
+                        text = f'{self.side_map3[int(float(hand_side))]}-{self.state_map2[int(float(hand_state))]}'
+                        # org
+                        org = (hand_bbox[0]+6, max(0, hand_bbox[1])-8)
+                        # Using cv2.putText() method
+                        cv2.putText(self.img, text, org, self.font, self.fontScale, self.color, self.thickness, cv2.LINE_AA)
+
+                    for i in range(0, len(self.hand_json[0]['objects'])):
+                        individual_object_info_tmp = self.hand_json[0]['objects'][i]
+                        object_bbox = individual_object_info_tmp['bbox']
+
+                        cv2.rectangle(self.img, (object_bbox[0], object_bbox[1]), (object_bbox[2], object_bbox[3]), color=self.obj_rgb, thickness=4)
+                        cv2.rectangle(self.img, (object_bbox[0], max(0, object_bbox[1]-30)), (object_bbox[0]+32, max(0, object_bbox[1]-30)+30), color=self.obj_rgb, thickness=4)
+
+                        text = f'O'
+                        # org
+                        org = (object_bbox[0]+5, max(0, object_bbox[1])-8)
+                        # Using cv2.putText() method
+                        cv2.putText(self.img, text, org, self.font, self.fontScale, self.color, self.thickness, cv2.LINE_AA)
+                    #########################################
+                    # cv2.imshow('a', vis_img2)
+                    # cv2.waitKey(1)
+
+
+            
+
+    # from dateutil.parser import parse
+    # def image_callback(msg1, msg2, msg3):
+    def image_callback(self, msg1, msg2):
+        try:
+            # Convert your ROS Image message to OpenCV2 for color
+            color_img = self.bridge.imgmsg_to_cv2(msg1, "bgr8")
+            cv2_img = cv2.resize(color_img, (int(color_img.shape[1]/2), int(color_img.shape[0]/2)))
+
+            
+            # Convert your ROS Image message to OpenCV2 for depth
+            depth_image = self.bridge.imgmsg_to_cv2(msg2, desired_encoding="passthrough")
+            depth_array = np.array(depth_image, dtype=np.float32)
+
+            # grey_color = 153
+            depth_image_3d = np.dstack((depth_array,depth_array,depth_array)) #depth image is 1 channel, color is 3 channels
+            cv2_depth_img = cv2.resize(depth_image_3d, (int(depth_image_3d.shape[1]/2), int(depth_image_3d.shape[0]/2)))
+            depth_colormap = cv2.applyColorMap(cv2.convertScaleAbs(cv2_depth_img, alpha=0.03), cv2.COLORMAP_JET)
+
+            depth_img = depth_colormap
+
 
         except CvBridgeError:
             print("error in mmdetection")
@@ -229,49 +276,6 @@ class TAS_Integrator_YJ:
             #     #             # #########################################
             #     #########################################
                 
-            if(self.hand_json!=None):
-                self.img = cv2_img
-                ## yjang inserted for visualising Hand-Object State Estimation output from the integrated results
-
-              
-
-                # self.hand_states = integrated_data[i_cnt]['hand_states']
-                mask_tmp_ = []
-                # if(0<len(self.hand_states['hands'])):
-                if(0<len(self.hand_json[0]['hands'])):  
-                    for i in range(0, len(self.hand_json[0]['hands'])):
-                        individual_hand_info_tmp = self.hand_json[0]['hands'][i]
-                        hand_bbox = individual_hand_info_tmp['bbox']
-                        hand_state = individual_hand_info_tmp['state']
-                        hand_side = individual_hand_info_tmp['side_id']
-                        print(self.hand_json[0]['hands'][i])
-
-                        cv2.rectangle(self.img, (hand_bbox[0], hand_bbox[1]), (hand_bbox[2], hand_bbox[3]), color=self.hand_rgb[hand_side], thickness=4)
-                        cv2.rectangle(self.img, (hand_bbox[0], max(0, hand_bbox[1]-30)), (hand_bbox[0]+62, max(0, hand_bbox[1]-30)+30), color=self.hand_rgb[hand_side], thickness=4)
-
-                        text = f'{self.side_map3[int(float(hand_side))]}-{self.state_map2[int(float(hand_state))]}'
-                        # org
-                        org = (hand_bbox[0]+6, max(0, hand_bbox[1])-8)
-                        # Using cv2.putText() method
-                        cv2.putText(self.img, text, org, self.font, self.fontScale, self.color, self.thickness, cv2.LINE_AA)
-
-                    for i in range(0, len(self.hand_json[0]['objects'])):
-                        individual_object_info_tmp = self.hand_json[0]['objects'][i]
-                        object_bbox = individual_object_info_tmp['bbox']
-
-                        cv2.rectangle(self.img, (object_bbox[0], object_bbox[1]), (object_bbox[2], object_bbox[3]), color=self.obj_rgb, thickness=4)
-                        cv2.rectangle(self.img, (object_bbox[0], max(0, object_bbox[1]-30)), (object_bbox[0]+32, max(0, object_bbox[1]-30)+30), color=self.obj_rgb, thickness=4)
-
-                        text = f'O'
-                        # org
-                        org = (object_bbox[0]+5, max(0, object_bbox[1])-8)
-                        # Using cv2.putText() method
-                        cv2.putText(self.img, text, org, self.font, self.fontScale, self.color, self.thickness, cv2.LINE_AA)
-                    #########################################
-                    # cv2.imshow('a', vis_img2)
-                    # cv2.waitKey(1)
-
-    
     def start(self):
         while not rospy.is_shutdown():
             if self.img is not None:
