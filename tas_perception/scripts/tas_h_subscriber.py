@@ -146,7 +146,7 @@ class TAS_Integrator_YJ:
             #     print("body okay-----------------------------------------------")
             
             # print(self.hand_json)
-            if(self.hand_json!=None):
+            # if(self.hand_json!=None):
                 # print('1st', self.hand_json[0])
                 # # print('a', len(self.hand_json[0]))
                 # if(0<len(self.hand_json[0]['hands'])):                
@@ -155,9 +155,9 @@ class TAS_Integrator_YJ:
                 #     self.hand_states = integrated_data_tmp_for_saving['hand_states']
                 #     print('a', integrated_data_tmp_for_saving['hand_states'])
                     
-                print("hand okay-----------------------------------------------")
-            if(self.hand_json!=None and self.instance_json!=None and self.body_json!=None):
-                print(integrated_data_tmp_for_saving)
+            #     print("hand okay-----------------------------------------------")
+            # if(self.hand_json!=None and self.instance_json!=None and self.body_json!=None):
+            #     print(integrated_data_tmp_for_saving)
         except CvBridgeError:
             print("e")
         else:
@@ -177,7 +177,6 @@ class TAS_Integrator_YJ:
                         hand_bbox = individual_hand_info_tmp['bbox']
                         hand_state = individual_hand_info_tmp['state']
                         hand_side = individual_hand_info_tmp['side_id']
-                        print(self.hand_json[0]['hands'][i])
 
                         cv2.rectangle(self.img, (hand_bbox[0], hand_bbox[1]), (hand_bbox[2], hand_bbox[3]), color=self.hand_rgb[hand_side], thickness=4)
                         cv2.rectangle(self.img, (hand_bbox[0], max(0, hand_bbox[1]-30)), (hand_bbox[0]+62, max(0, hand_bbox[1]-30)+30), color=self.hand_rgb[hand_side], thickness=4)
