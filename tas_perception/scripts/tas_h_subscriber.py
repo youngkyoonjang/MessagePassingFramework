@@ -32,6 +32,7 @@ class TAS_Integrator_YJ:
         # params
 
         self.img = None
+        self.img_tmp = None
         self.instance_json = None
         self.body_json = None
         self.hand_json = None
@@ -160,8 +161,9 @@ class TAS_Integrator_YJ:
         except CvBridgeError:
             print("e")
         else:
-                
+            
             if(self.hand_json!=None):
+                self.img = self.img_tmp
                 ## yjang inserted for visualising Hand-Object State Estimation output from the integrated results
 
               
@@ -229,7 +231,7 @@ class TAS_Integrator_YJ:
         except CvBridgeError:
             print("error in mmdetection")
         else:
-            self.img = cv2_img
+            self.img_tmp = cv2_img
 
             # if(self.instance_json!=None):
             #     self.img = cv2_img
