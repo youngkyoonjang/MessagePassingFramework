@@ -316,7 +316,7 @@ class TAS_Integrator_YJ:
 
 
 def main():
-    rospy.init_node('tas_integrator_', anonymous=True)
+    rospy.init_node('tas_integrator_h', anonymous=True)
 
     Ctas_Integrator_YJ = TAS_Integrator_YJ()
 
