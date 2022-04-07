@@ -116,48 +116,8 @@ class TAS_Integrator_YJ:
             loaded_dictionary_hand = json.loads(msg.data)
 
             self.hand_json = loaded_dictionary_hand
-            # print('b', self.hand_json)
-
-
-            # self.instance_json = json.loads(msg3.data)
-            integrated_data_tmp_for_saving={}
-            # integrated_data_tmp_for_saving = body_json[0]
-            # integrated_data_tmp_for_saving['instances']=self.instance_json[0]['instances']
-
-            # if(self.instance_json!=None):
-            #     # print(self.instance_json)
-            #     if(0<len(self.instance_json[0]['instances'])):                
-            #         integrated_data_tmp_for_saving['instances']=self.instance_json[0]['instances']
-            #         # integrated_data = [integrated_data_tmp_for_saving]
-            #         # # body = integrated_data[0]['body']
-            #         instances_results = integrated_data_tmp_for_saving['instances']
-                    
-            #         # # action = integrated_data[0]['action']
-            #         # # video_instances = integrated_data[0]['video_instances']
-                    
-            #     print("instance okay-----------------------------------------------")
-                    
-            # if(self.body_json!=None):
-            #     # print(self.body_json[0])
-            #     if(0<len(self.body_json[0]['body'])):                
-            #         integrated_data_tmp_for_saving['body']=self.body_json[0]['body']
-            #         body = integrated_data_tmp_for_saving['body']
-                    
-            #     print("body okay-----------------------------------------------")
             
-            # print(self.hand_json)
-            # if(self.hand_json!=None):
-                # print('1st', self.hand_json[0])
-                # # print('a', len(self.hand_json[0]))
-                # if(0<len(self.hand_json[0]['hands'])):                
-                #     integrated_data_tmp_for_saving['hand_states']=self.hand_json[0]['hands']
-                #     integrated_data_tmp_for_saving['hand_states']=self.hand_json[0]
-                #     self.hand_states = integrated_data_tmp_for_saving['hand_states']
-                #     print('a', integrated_data_tmp_for_saving['hand_states'])
-                    
-            #     print("hand okay-----------------------------------------------")
-            # if(self.hand_json!=None and self.instance_json!=None and self.body_json!=None):
-            #     print(integrated_data_tmp_for_saving)
+            integrated_data_tmp_for_saving={}
         except CvBridgeError:
             print("e")
         else:
@@ -200,14 +160,7 @@ class TAS_Integrator_YJ:
                         # Using cv2.putText() method
                         cv2.putText(self.img, text, org, self.font, self.fontScale, self.color, self.thickness, cv2.LINE_AA)
                     #########################################
-                    # cv2.imshow('a', vis_img2)
-                    # cv2.waitKey(1)
-
-
-            
-
-    # from dateutil.parser import parse
-    # def image_callback(msg1, msg2, msg3):
+                    
     def image_callback(self, msg1, msg2):
         try:
             # Convert your ROS Image message to OpenCV2 for color
@@ -228,90 +181,22 @@ class TAS_Integrator_YJ:
 
 
         except CvBridgeError:
-            print("error in mmdetection")
+            print("error in hands")
         else:
             self.img_tmp = cv2_img
 
-            # if(self.instance_json!=None):
-            #     self.img = cv2_img
-                
-            #     if(0<len(instances_results)):
-                    
-            #         for i in range(0, len(instances_results['labels'])):
-            #             label = instances_results['labels'][i]
-            #             print(i, label)
-                        
-            #     #         # if(label == 'person'):
-            #     #         #     # person_results = instances_results['pred_boxes'][i] #float
-            #     #         #     # depth_results = instances_results['depth_info'][i] #float
-            #     #         #     bbox_info = [instances_results['pred_boxes'][i][0], instances_results['pred_boxes'][i][1],
-            #     #         #                 instances_results['pred_boxes'][i][2], instances_results['pred_boxes'][i][3],
-            #     #         #                 instances_results['scores'][i]]
-            #     #         #     bbox_np  = np.asarray(bbox_info)
-            #     #         #     person_results = [{'bbox': bbox_np}]
-                            
-            #     #         #     # test a single image, with a list of bboxes.
-            #     #         #     self.pose_results, returned_outputs = inference_top_down_pose_model(
-            #     #         #         self.pose_model,
-            #     #         #         self.img,
-            #     #         #         person_results,
-            #     #         #         bbox_thr=self.bbox_thr,
-            #     #         #         format='xyxy',
-            #     #         #         dataset=self.dataset,
-            #     #         #         return_heatmap=self.return_heatmap,
-            #     #         #         outputs=self.output_layer_names)
-
-
-
-
-
-                            
-            #     #             # #########################################
-            #     #             # ## yjang inserted for writing results 
-            #     #             # self.jsonString = json.dumps(out_dic_list, indent=4)
-            #     #             # # jsonFile = open(out_info_file_path, "w")
-            #     #             # # jsonFile.write(self.jsonString)
-            #     #             # # # print(self.jsonString)
-            #     #             # # # loaded_dictionary = json.loads(self.jsonString)
-            #     #             # # jsonFile.close()
-            #     #             # #########################################
-            #     #########################################
                 
     def start(self):
         while not rospy.is_shutdown():
             if self.img is not None:
                 cv2.namedWindow('integrator_hand')        # Create a named window
                 cv2.moveWindow('integrator_hand', 1500,600)  # Move it to (40,30)
-                # self.pub_img.publish(self.br.cv2_to_imgmsg(self.image, encoding="rgb8"))
-
-                # # cv2.namedWindow('Body', cv2.WINDOW_NORMAL)
-                # # show the results
-                # if self.pose_results is not None:
-                #     self.img = vis_pose_result(
-                #         self.pose_model,
-                #         self.img,
-                #         self.pose_results,
-                #         dataset=self.dataset,
-                #         kpt_score_thr=self.kpt_thr,
-                #         radius=self.radius,
-                #         thickness=self.thickness_,
-                #         show=False)
 
                 cv2.imshow('integrator_hand', self.img)
-                # plt.figure(1); plt.clf()
-                # self.img = cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB)
-                # plt.imshow(self.img)
-                # plt.pause(0.03)
-                
-                # cv2.imwrite('./body_results_tmp.png', self.img)
+
                 key = cv2.waitKey(1)
-                # print('body-done')
-                # cv2.destroyAllWindows()
-            
-            # if self.jsonString is not None:
-            #     # self.pub_coord.publish(self.obj_3d_coord)
-            #     self.pub.publish(self.jsonString)
-            
+
+           
             self.loop_rate.sleep()
 
 

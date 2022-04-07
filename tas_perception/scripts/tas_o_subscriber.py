@@ -144,7 +144,7 @@ class TAS_Object_Subscriber_YJ:
 
 
         except CvBridgeError:
-            print("error in mmdetection")
+            print("error in objects")
         else:
             self.img_tmp = cv2_img
             
