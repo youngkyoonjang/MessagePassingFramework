@@ -165,7 +165,7 @@ def vis_detections_filtered_objects_PIL_saving(im, obj_dets, hand_dets, thresh_h
                 # yjang inserted - collect output information to replicate the results in an integrated version
                 objests.append({'id': int(obj_idx), 'bbox':bbox, 'cc_pt': calculate_center(bbox), 'score': float(score)})
                 #########################################
-
+    if (hand_dets is not None): # yjang added 
         for hand_idx, i in enumerate(range(np.minimum(10, hand_dets.shape[0]))):
             bbox = list(int(np.round(x)) for x in hand_dets[i, :4])
             score = hand_dets[i, 4]
@@ -178,7 +178,7 @@ def vis_detections_filtered_objects_PIL_saving(im, obj_dets, hand_dets, thresh_h
                 # yjang inserted - collect output information to replicate the results in an integrated version
                 hands.append({'id': int(hand_idx), 'bbox':bbox, 'cc_pt': calculate_center(bbox), 'score': float(score), 'side_id': int(lr), 'state': int(state)})
                 #########################################
-
+                '''# yjang added
                 if state > 0: # in contact hand
 
                     obj_cc, hand_cc =  calculate_center(obj_dets[img_obj_id[i],:4]), calculate_center(bbox)
@@ -188,7 +188,7 @@ def vis_detections_filtered_objects_PIL_saving(im, obj_dets, hand_dets, thresh_h
                     elif lr == 1:
                         side_idx = 1
                     draw_line_point(draw, side_idx, (int(hand_cc[0]), int(hand_cc[1])), (int(obj_cc[0]), int(obj_cc[1])))
-
+                '''# yjang added
     elif hand_dets is not None:
         image = vis_detections_PIL(im, 'hand', hand_dets, thresh_hand, font_path)
         
