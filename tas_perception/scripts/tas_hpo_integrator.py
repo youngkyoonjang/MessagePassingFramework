@@ -105,6 +105,20 @@ class TAS_Integrator_YJ:
         # Line thickness of 2 px
         self.thickness = 2
         
+        
+        ###################################################################################
+        ###################################################################################
+        ## integrated data initialisation
+        ###################################################################################
+        self.integrated_data=[ { 'frame_id':0,
+                            'timestamp':'0:00:00',
+                            'body':[],
+                            'instances':[],
+                            'hand_states': {'hands':[],
+                                            'objects':[]
+                                           }
+                          } ]
+        
                 
         ###################################################################################
         ###################################################################################
@@ -139,6 +153,11 @@ class TAS_Integrator_YJ:
             self.instance_json = loaded_dictionary_ins
         except CvBridgeError:
             print("e")
+        else:
+            if(0<len(self.instance_json[0]['instances'])):
+                self.integrated_data[0]['instances']=self.instance_json[0]['instances']
+            else:
+                self.integrated_data[0]['instances']=[]
                         
 
     def body_json_callback(self, msg):
@@ -147,16 +166,31 @@ class TAS_Integrator_YJ:
             self.body_json = loaded_dictionary_body
         except CvBridgeError:
             print("e")
+        else:
+            if(0<len(self.body_json[0]['body'])):
+                self.integrated_data[0]['body']=self.body_json[0]['body']
+            else:
+                self.integrated_data[0]['body']=[]
             
     def hand_json_callback(self, msg):
         try:
             loaded_dictionary_hand = json.loads(msg.data)
 
             self.hand_json = loaded_dictionary_hand
-            
-            integrated_data_tmp_for_saving={}
         except CvBridgeError:
             print("e")
+        else:
+            if(0<len(self.hand_json[0]['hands'])):
+                self.integrated_data[0]['hand_states']['hands']=self.hand_json[0]['hands']
+            else:
+                self.integrated_data[0]['hand_states']['hands']=[]
+                
+            if(0<len(self.hand_json[0]['objects'])):
+                self.integrated_data[0]['hand_states']['objects']=self.hand_json[0]['objects']
+            else:
+                self.integrated_data[0]['hand_states']['objects']=[]
+                
+                
                     
     def image_callback(self, msg1, msg2):
         try:
@@ -190,12 +224,11 @@ class TAS_Integrator_YJ:
                 
                 if(self.hand_json!=None):
                 
-                    # self.hand_states = integrated_data[i_cnt]['hand_states']
+                    hand_states = self.integrated_data[0]['hand_states']
                     mask_tmp_ = []
-                    # if(0<len(self.hand_states['hands'])):
-                    if(0<len(self.hand_json[0]['hands'])):  
-                        for i in range(0, len(self.hand_json[0]['hands'])):
-                            individual_hand_info_tmp = self.hand_json[0]['hands'][i]
+                    if(0<len(hand_states['hands'])):
+                        for i in range(0, len(hand_states['hands'])):
+                            individual_hand_info_tmp = hand_states['hands'][i]
                             hand_bbox = individual_hand_info_tmp['bbox']
                             hand_state = individual_hand_info_tmp['state']
                             hand_side = individual_hand_info_tmp['side_id']
@@ -209,8 +242,8 @@ class TAS_Integrator_YJ:
                             # Using cv2.putText() method
                             cv2.putText(self.img, text, org, self.font, self.fontScale, self.color, self.thickness, cv2.LINE_AA)
 
-                        for i in range(0, len(self.hand_json[0]['objects'])):
-                            individual_object_info_tmp = self.hand_json[0]['objects'][i]
+                        for i in range(0, len(hand_states['objects'])):
+                            individual_object_info_tmp = hand_states['objects'][i]
                             object_bbox = individual_object_info_tmp['bbox']
 
                             cv2.rectangle(self.img, (object_bbox[0], object_bbox[1]), (object_bbox[2], object_bbox[3]), color=self.obj_rgb, thickness=4)
@@ -224,19 +257,14 @@ class TAS_Integrator_YJ:
                         #################
                         
                 if(self.body_json!=None):
+                    body = self.integrated_data[0]['body']
                     
-                    mask_tmp_ = []
-                    # if(0<len(self.hand_states['hands'])):
-                    if(0<len(self.body_json[0]['body'])):            
-                        integrated_data_tmp_for_saving=self.body_json[0]
-                        integrated_data = [integrated_data_tmp_for_saving]
-                        # body = integrated_data[0]['body']
-                        body_pose_results = integrated_data[0]['body']
+                    if(0<len(body)):
                     
                         #########################################
-                        for i in range(0, len(body_pose_results)):
-                            bbox = body_pose_results[i]['bbox']
-                            keypoints = body_pose_results[i]['keypoints']
+                        for i in range(0, len(body)):
+                            bbox = body[i]['bbox']
+                            keypoints = body[i]['keypoints']
                                                     
                             cv2.rectangle(self.img, (int(bbox[0]), int(bbox[1])), (int(bbox[2]), int(bbox[3])), color=(0, 0, 255), thickness=1)
                             
@@ -285,22 +313,16 @@ class TAS_Integrator_YJ:
                                     cv2.circle(self.img, (int(keypoints[j][0]), int(keypoints[j][1])), 3, (0,255,0), -1)
                             
                 if(self.instance_json!=None):
-                
-                    mask_tmp_ = []
-                    # if(0<len(self.hand_states['hands'])):
-                    if(0<len(self.instance_json[0]['instances'])):            
-                        integrated_data_tmp_for_saving=self.instance_json[0]
-                        integrated_data = [integrated_data_tmp_for_saving]
-                        # body = integrated_data[0]['body']
-                        instances_results = integrated_data[0]['instances']
+                    instances = self.integrated_data[0]['instances']
+                    
+                    if(0<len(instances)):
                         
-                        
-                        for i in range(0, len(instances_results['labels'])):
-                            label = instances_results['labels'][i]
-                            pred_box = instances_results['pred_boxes'][i]
-                            score = instances_results['scores'][i]
-                            pred_class = instances_results['pred_classes'][i]
-                            pred_contour = instances_results['pred_contours'][i]
+                        for i in range(0, len(instances['labels'])):
+                            label = instances['labels'][i]
+                            pred_box = instances['pred_boxes'][i]
+                            score = instances['scores'][i]
+                            pred_class = instances['pred_classes'][i]
+                            pred_contour = instances['pred_contours'][i]
                             
                             countour_mask_array = [np.array(pred_contour).astype(np.int32)]
                             #create an empty image for contours                    
