@@ -167,6 +167,8 @@ catkin_install_python(PROGRAMS
   scripts/tas_p_subscriber.py
   scripts/tas_o_subscriber.py
   scripts/tas_h_subscriber.py
+  scripts/tas_hpo_integrator.py
+  scripts/tas_MPF_applied.py
   # scripts/tas_readiness_detector.py
   # scripts/tas_trust_act_recognition.py  
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
