@@ -122,6 +122,11 @@ class TAS_Integrator_YJ:
         self.object_count_list = []
         self.bVisualising_Memory = True
         self.original_list=[]
+        
+        self.furniture_candidates=['sink', 'desk', 'dining_table', 'bed'] ## set object list that could be a furniture
+        self.target_object_list=['cup', 'mouse', 'knife', 'keyboard', 'laptop'] ## set object list that you plan to interact 
+        
+        self.iou_threshold = 0.2
      
         ###################################################################################
         ###################################################################################
@@ -169,7 +174,7 @@ class TAS_Integrator_YJ:
         # return the intersection over union value
         return iou
 
-    def update_object_list (self, original_list, instances, furniture_candidates=['sink', 'desk', 'table', 'bed']):
+    def update_object_list (self, original_list, instances, furniture_candidates):
         if(len(original_list)==0 and 0<len(instances['pred_boxes'])):
             for i in range(0, len(instances['pred_boxes'])):
                 bbox = instances['pred_boxes'][i]
@@ -190,7 +195,7 @@ class TAS_Integrator_YJ:
                     org_bbox = original_list[j]['bbox']
                     iou = self.bb_intersection_over_union(org_bbox, bbox)
 
-                    if(max_IoU < iou and 0.2 < iou):
+                    if(max_IoU < iou and self.iou_threshold < iou):
                         max_IoU = iou
                         max_IoU_id = j
                         max_IoU_label = instances['labels'][i]
@@ -282,7 +287,7 @@ class TAS_Integrator_YJ:
                 org_bbox = original_list[j]['bbox']
                 iou = self.bb_intersection_over_union(org_bbox, bbox)
                 
-                if(max_IoU < iou and 0.2 < iou):
+                if(max_IoU < iou and self.iou_threshold < iou):
                     max_IoU = iou
                     max_IoU_id = j
                     max_IoU_label = instances['labels'][i] 
@@ -395,7 +400,7 @@ class TAS_Integrator_YJ:
                 # instance status update
                 if(self.hand_json!=None and self.body_json!=None and self.instance_json!=None):
                     if(0<len(instances)):
-                        self.original_list, furniture_id_in_memory = self.update_object_list (self.original_list, instances)
+                        self.original_list, furniture_id_in_memory = self.update_object_list (self.original_list, instances, self.furniture_candidates)
                     
                         if(0<len(body)):
                             hand_pt_tmp = body[0]['keypoints'][10]
@@ -420,14 +425,14 @@ class TAS_Integrator_YJ:
                         for i in range(0, len(self.original_list)):
                             bbox = self.original_list[i]['bbox']
                             label = self.original_list[i]['representative_label']
-
-                            # if (not (label == 'cup' or label == 'knife')):
-                            #     continue
+                            
+                            if (not (label in self.target_object_list)):
+                                continue
                             
                             iou = self.bb_intersection_over_union(Contacted_object_bbox,bbox )
                             print(label, self.original_list[i]['representative_label'], iou)
 
-                            # if(max_IoU < iou and 0.2 < iou):
+                            # if(max_IoU < iou and self.iou_threshold < iou):
                             if(max_IoU < iou):
                                 max_IoU = iou
                                 max_IoU_id = i
