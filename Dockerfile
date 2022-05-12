@@ -9,13 +9,23 @@ ENV ROS_PYTHON_VERSION=3
 ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES all
 
+RUN \
+    # Update nvidia GPG key
+    rm /etc/apt/sources.list.d/cuda.list && \
+    rm /etc/apt/sources.list.d/nvidia-ml.list && \
+    apt-key del 7fa2af80 && \
+    apt-get update && apt-get install -y --no-install-recommends wget && \
+    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.0-1_all.deb && \
+    dpkg -i cuda-keyring_1.0-1_all.deb && \
+    apt-get update
+    
+ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt update && \
     DEBIAN_FRONTEND=noninteractive apt install -y software-properties-common && \
     add-apt-repository ppa:deadsnakes/ppa && \
     apt update && \
     DEBIAN_FRONTEND=noninteractive apt install -y python3.8 python3-pip python-is-python3
-
 
 # ####################################################################################################
 # ######################################### ROS INSTALLATION #########################################

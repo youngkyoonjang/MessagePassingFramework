@@ -7,13 +7,13 @@ Specifically we have tested using following devices:
 - Cameras: Intel RealSense D435, D455 and L515. (Intel RealSense cameras require sufficient power to capture images. Please connect it to the main desktop or laptop ports instaed of a USB hub.)
 - GPUs: NVIDIA GeForce RTX 3080, NVIDIA GeForce RTX 3070-8.0GB, Nvidia GeForce RTX 3060 and NVIDIA GeForce RTX 2080 Ti (slow)
 - PyTorch version: 1.8.2+cu111
-
+res
 # Prerequisite (or note): 
 1. Install Docker: https://docs.docker.com/engine/install/ubuntu/
 2. If you cannot clone this repository using 'git clone', please download the entire repository. It happens because it is currently private.
 3. You need to install pip or pip3 (e.g., if you use python3, 'sudo apt-get install python3-pip')
 4. The code is designed to use 'python' command. If your OS only support python3, do 'Find & Replace' from 'python ' to 'python3 '.
-5. If you see error message related to'RuntimeError: Not compiled with GPU support' when testing --hand, you need to change stable version docker command. (It needs to be discussed with Cedric).
+5. If you see error message related to'RuntimeError: Not compiled with GPU support' when testing --hand, you need to change stable version docker command.
 
 # Running Instruction: 
 1. Download github repository: git clone https://github.com/youngkyoonjang/MessagePassingFramework.git
@@ -23,7 +23,5 @@ Specifically we have tested using following devices:
 * Keep in mind that each model requires GPU memory to load their models, so you are only able to run modules depending on your GPU memory capacity.
 3. Do everything else: python 0_Do_necessary_settings_build_and_run.py
 
-# Notes: 
-* It is still work-in-progress repository. Please keep it confidential. I am sharing this only within PRL Lab only.
-* It has some additional features, such as message passsing between modules using ROS publisher/subscriber. And I am willing to update it as requested by PRL Lab members. So feel free to share your request to use this repository. If it is already there, I will put more explanation how to access the data. Otherwise, I can add the functionality and share it for you. 
-* If you found other modules useful, ask me to consider. Then, I will update it throughout my stay at PRL.
+# Use cases: 
+* There are some subscriber examples under the folder MessagePassingFrameowrk/tas_perception/scripts/. The names are {tas_h_subscriber, tas_o_subscriber and tas_p_subscriber}.py for hand states, object detection and body pose topics, respectively. Each subscriber example visualise the output of each corresponding vision module: <tas_h_subscriber.py, tas_hand.py>, <tas_o_subscriber.py, tas_mmdetection.py>, and <tas_p_subscriber.py, tas_mmpose.py>. When all three modules are switched on to process, the integrater example tas_hpo_integrator.py will visualise all the outputs at once. To launch the subscriber or integrator example process, you need to put the following code line in the main.launch file under root/tas_perception/launch/ folder.
