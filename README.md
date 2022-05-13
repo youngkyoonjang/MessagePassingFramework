@@ -25,4 +25,8 @@ res
 * Please be patient. Building a Docker image for the first time can take an hour or more (or less). However, it does not rebuild the prebuilt image from the second attempt. So it runs very fast from the second trial.
 
 # Use cases: 
-* There are some subscriber examples under the folder MessagePassingFrameowrk/tas_perception/scripts/. The names are {tas_h_subscriber, tas_o_subscriber and tas_p_subscriber}.py for hand states, object detection and body pose topics, respectively. Each subscriber example visualise the output of each corresponding vision module: <tas_h_subscriber.py, tas_hand.py>, <tas_o_subscriber.py, tas_mmdetection.py>, and <tas_p_subscriber.py, tas_mmpose.py>. When all three modules are switched on to process, the integrater example tas_hpo_integrator.py will visualise all the outputs at once. To launch the subscriber or integrator example process, you need to put the following code line in the main.launch file under root/tas_perception/launch/ folder.
+* There are some subscriber examples under the folder MessagePassingFrameowrk/tas_perception/scripts/.
+* The names are {tas_h_subscriber, tas_o_subscriber and tas_p_subscriber}.py for hand states, object detection and body pose topics, respectively.
+* Each subscriber example visualise the output of each corresponding vision module: <tas_h_subscriber.py, tas_hand.py>, <tas_o_subscriber.py, tas_mmdetection.py>, and <tas_p_subscriber.py, tas_mmpose.py>.
+* When all three modules are switched on to run and process, the integrater example tas_hpo_integrator.py will visualise all the outputs at once.
+* To launch the subscriber or integrator example process, you need to put the following code line in the main.launch file under root/tas_perception/launch/ folder.
