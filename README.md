@@ -67,7 +67,7 @@ wlp7s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
 ```python
 os.system('python 2_Switch_module_activation_and_assign_gpus.py --pose F:0 --object T:0 --hand F:0 --gaze F:0') ##Acvitate:T/F, gpu_id:0/1
 ```
-3. Make sure the realsense camera launch script is not commented out:
+4. Make sure the realsense camera launch script is not commented out:
 * If the realsense script in the 'main.launch' file under the <root>/tas_perception/launch folder is commented out:
 ```python
     <!-- <include file="$(find realsense2_camera)/launch/rs_camera.launch">
@@ -82,3 +82,6 @@ os.system('python 2_Switch_module_activation_and_assign_gpus.py --pose F:0 --obj
         <arg name="initial_reset" value="true"/>
     </include>
 ```
+* Make sure you haven't touched any other scripts.
+
+5. :
