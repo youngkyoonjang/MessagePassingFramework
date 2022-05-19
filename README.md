@@ -16,8 +16,11 @@ res
 5. If you see error message related to'RuntimeError: Not compiled with GPU support' when testing --hand, you need to change stable version docker command.
 
 # Running Instruction: 
-1. Download github repository: git clone https://github.com/youngkyoonjang/MessagePassingFramework.git
-2. Change parameters depending on what you want to run in '0_Do_necessary_settings_build_and_run.py':
+1. Download github repository:
+```
+git clone https://github.com/youngkyoonjang/MessagePassingFramework.git
+```
+3. Change parameters depending on what you want to run in '0_Do_necessary_settings_build_and_run.py':
 * If you want to run pose estimation using the first GPU: 
 ```python
 --pose T:0 --object F:0 --hand F:0 --gaze F:0
