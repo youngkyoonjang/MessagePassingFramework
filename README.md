@@ -43,7 +43,7 @@ python 0_Do_necessary_settings_build_and_run.py
 * Each subscriber example visualise the output of each corresponding vision module: <tas_h_subscriber.py, tas_hand.py>, <tas_o_subscriber.py, tas_mmdetection.py>, and <tas_p_subscriber.py, tas_mmpose.py>.
 * When all three modules are switched on to run and process, the integrater example tas_hpo_integrator.py will visualise all the outputs at once.
 * To launch the subscriber or integrator example process, you need to put the following code line in the main.launch file under root/tas_perception/launch/ folder.
-## In case you want use a single PC or a laptop with one GPU
+## In case you want to use a single PC or a laptop with one GPU
 1. Check the IP address for the network (wifi or wired) you are currently connecting to:
 ```
 ifconfig
