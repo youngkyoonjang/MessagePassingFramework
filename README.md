@@ -22,9 +22,15 @@ res
 ```python
 --pose T:0 --object F:0 --hand F:0 --gaze F:0
 ```
-* If you want to run both object detection on the first GPU and hand-object state estimation on the second GPU: --pose F:0 --object T:0 --hand T:1 --gaze F:0
+* If you want to run both object detection on the first GPU and hand-object state estimation on the second GPU:
+```python
+--pose F:0 --object T:0 --hand T:1 --gaze F:0
+```
 * Keep in mind that each model requires GPU memory to load their models, so you are only able to run modules depending on your GPU memory capacity.
-3. Do everything else: python 0_Do_necessary_settings_build_and_run.py
+3. Do everything else: 
+```python
+python 0_Do_necessary_settings_build_and_run.py
+```
 * Please be patient. Building a Docker image for the first time can take an hour or more (or less). However, it does not rebuild the prebuilt image from the second attempt. So it runs very fast from the second trial.
 
 # Use cases: 
