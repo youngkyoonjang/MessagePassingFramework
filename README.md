@@ -62,3 +62,8 @@ wlp7s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
 		-e ROS_MASTER_URI=http://10.0.0.71:11311 \
 		-e ROS_IP=10.0.0.71 \
 ```
+3. Turn on the module you want to test (e.g., object detection module running on the first (only) GPU):
+* Edit '0_Do_necessary_settings_build_and_run.py' in the root folder
+```python
+os.system('python 2_Switch_module_activation_and_assign_gpus.py --pose F:0 --object T:0 --hand F:0 --gaze F:0') ##Acvitate:T/F, gpu_id:0/1
+```
