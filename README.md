@@ -20,7 +20,7 @@ res
 ```
 git clone https://github.com/youngkyoonjang/MessagePassingFramework.git
 ```
-3. Change parameters depending on what you want to run in '0_Do_necessary_settings_build_and_run.py':
+2. Change parameters depending on what you want to run in '0_Do_necessary_settings_build_and_run.py':
 * If you want to run pose estimation using the first GPU: 
 ```python
 --pose T:0 --object F:0 --hand F:0 --gaze F:0
