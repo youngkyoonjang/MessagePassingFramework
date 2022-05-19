@@ -56,3 +56,9 @@ wlp7s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         ether 00:0c:43:02:19:7d  txqueuelen 1000  (Ethernet)
 ```
 * Then, copy the ip: 10.0.0.71
+2. Set up your ROS_MASTER_URI and ROS_IP using the ip address:
+* Edit 'Makefile' in the root folder
+```python
+		-e ROS_MASTER_URI=http://10.0.0.71:11311 \
+		-e ROS_IP=10.0.0.71 \
+```
