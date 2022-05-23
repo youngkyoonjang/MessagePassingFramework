@@ -84,4 +84,16 @@ os.system('python 2_Switch_module_activation_and_assign_gpus.py --pose F:0 --obj
 ```
 * Make sure you haven't touched any other scripts.
 
-5. :
+5. Make sure the corresponding subscriber launch script is not commented out:
+* If the object usbscriber (specifically in this example) script in the 'main.launch' file under the <root>/tas_perception/launch folder is commented out:
+```python
+    <!-- <node pkg="tas_perception" type="tas_o_subscriber.py" name="tas_o_subscriber" /> -->
+```
+* Remove the comment:
+```python
+    <node pkg="tas_perception" type="tas_o_subscriber.py" name="tas_o_subscriber" />
+```
+6. Now ready to build docker image and run:
+```python
+python 0_Do_necessary_settings_build_and_run.py
+```
