@@ -60,10 +60,7 @@ def main():
     
     args = parse_args()
 
-    ## switching module activation on and off
-    switch_launch_modules_on_off('./tas_perception/launch/main.launch', "tas_p_subscriber", args.pose[:1])
-    switch_launch_modules_on_off('./tas_perception/launch/main.launch', "tas_o_subscriber", args.object[:1])
-    switch_launch_modules_on_off('./tas_perception/launch/main.launch', "tas_h_subscriber", args.hand[:1])
+    ## switching module activation on and off    
     if(args.integration[:1] == 'T'): ## when pose estimation is activated, then it needs to activate object too!
         switch_launch_modules_on_off('./tas_perception/launch/main.launch', "tas_p_subscriber", 'F')
         switch_launch_modules_on_off('./tas_perception/launch/main.launch', "tas_o_subscriber", 'F')
@@ -76,6 +73,12 @@ def main():
         switch_launch_modules_on_off('./tas_perception/launch/main.launch', "tas_h_subscriber", 'F')
         switch_launch_modules_on_off('./tas_perception/launch/main.launch', "tas_hpo_integrator", 'F')
         switch_launch_modules_on_off('./tas_perception/launch/main.launch', "tas_MPF_applied", 'T')
+    else:
+        switch_launch_modules_on_off('./tas_perception/launch/main.launch', "tas_p_subscriber", args.pose[:1])
+        switch_launch_modules_on_off('./tas_perception/launch/main.launch', "tas_o_subscriber", args.object[:1])
+        switch_launch_modules_on_off('./tas_perception/launch/main.launch', "tas_h_subscriber", args.hand[:1])
+        switch_launch_modules_on_off('./tas_perception/launch/main.launch', "tas_hpo_integrator", 'F')
+        switch_launch_modules_on_off('./tas_perception/launch/main.launch', "tas_MPF_applied", 'F')
     
 if __name__ == '__main__':
     main()
