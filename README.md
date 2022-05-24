@@ -85,7 +85,7 @@ os.system('python 2_Switch_module_activation_and_assign_gpus.py --pose F:0 --obj
 * Make sure you haven't touched any other scripts.
 
 5. Make sure the corresponding subscriber launch script is not commented out:
-* If the object usbscriber (specifically in this example) script in the 'main.launch' file under the <root>/tas_perception/launch folder is commented out:
+* If the object subscriber (specifically in this example) script in the 'main.launch' file under the <root>/tas_perception/launch folder is commented out:
 ```python
     <!-- <node pkg="tas_perception" type="tas_o_subscriber.py" name="tas_o_subscriber" /> -->
 ```
@@ -113,12 +113,48 @@ wlp108s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
 ```
 * Then, copy the ip: 10.0.0.136
 2. Set up your ROS_MASTER_URI and ROS_IP using the ip address:
-* For Master PC, follow the same procedure written in the case of using single PC.
+* For Master PC, follow the same procedure written (above) in the case of using single PC.
 * For second PC, edit 'Makefile' in the root folder
 ```python
 		-e ROS_MASTER_URI=http://10.0.0.71:11311 \
 		-e ROS_IP=10.0.0.136 \
 ```
+3. Turn on the module you want to test (For second PC, for example, pose estimation module running on the first (only) GPU):
+* Edit '0_Do_necessary_settings_build_and_run.py' in the root folder
+```python
+os.system('python 2_Switch_module_activation_and_assign_gpus.py --pose T:0 --object F:0 --hand F:0 --gaze F:0') ##Acvitate:T/F, gpu_id:0/1
+```
+4. Make sure the realsense camera launch script is COMMENTED out on the second PC:
+* If the realsense script in the 'main.launch' file under the <root>/tas_perception/launch folder is not commented out on the second PC:
+```python
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+        <arg name="align_depth" value="true"/>
+        <arg name="initial_reset" value="true"/>
+    </include>    
+```
+* Comment out only on the second PC:
+```python
+    <!-- <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+        <arg name="align_depth" value="true"/>
+        <arg name="initial_reset" value="true"/>
+    </include> -->
+```
+* Make sure you haven't touched any other scripts.
+
+5. Make sure the corresponding subscriber launch script is not commented out on the second GPU:
+* If the pose subscriber (specifically in this example) script in the 'main.launch' file under the <root>/tas_perception/launch folder is commented out:
+```python
+    <!-- <node pkg="tas_perception" type="tas_p_subscriber.py" name="tas_p_subscriber" /> -->
+```
+* Remove the comment:
+```python
+    <node pkg="tas_perception" type="tas_p_subscriber.py" name="tas_p_subscriber" />
+```
+6. Now ready to build docker image and run:
+```python
+python 0_Do_necessary_settings_build_and_run.py
+```
+* Make sure the master PC is running before you run the second PC
 	
 # References
 ```
