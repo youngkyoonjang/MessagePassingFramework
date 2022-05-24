@@ -99,11 +99,21 @@ python 0_Do_necessary_settings_build_and_run.py
 ```
 ## In case you want to use two PCs (1 GPU for each PC) on the same (WiFi) network:
 1. Check the IP address for the network (wifi or wired) you are currently connecting to:
-* Follow the same procedure written in the case of using single PC.
-#### For Master and second PCs, follow the same procedure written in the case of using single PC.
-#### For the second PC as an example:
-	
+* Follow the same procedure written (above) in the case of using single PC.
+* For the second PC as an example:
+```
+ifconfig
+```
+* In my case, I am connecting to a wifi network. Then it shows:
+```
+wlp7s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.0.0.71  netmask 255.255.255.0  broadcast 10.0.0.255
+        inet6 fe80::55b9:dd5c:9925:874c  prefixlen 64  scopeid 0x20<link>
+        ether 00:0c:43:02:19:7d  txqueuelen 1000  (Ethernet)
+```
+* Then, copy the ip: 10.0.0.71
 2. (will be updating soon)
+* For Master and second PCs, follow the same procedure written in the case of using single PC.
 	
 # References
 ```
