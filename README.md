@@ -98,7 +98,11 @@ os.system('python 2_Switch_module_activation_and_assign_gpus.py --pose F:0 --obj
 python 0_Do_necessary_settings_build_and_run.py
 ```
 ## In case you want to use two PCs (1 GPU for each PC) on the same (WiFi) network:
-1. Set master and other PC URI
+1. Check the IP address for the network (wifi or wired) you are currently connecting to:
+* Follow the same procedure written in the case of using single PC.
+#### For Master and second PCs, follow the same procedure written in the case of using single PC.
+#### For the second PC as an example:
+	
 2. (will be updating soon)
 	
 # References
