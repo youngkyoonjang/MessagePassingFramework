@@ -158,8 +158,6 @@ include_directories(
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
 catkin_install_python(PROGRAMS
-  # scripts/tas_perceptor_RF.py
-  # scripts/tas_face_rec.py
   scripts/tas_mmdetection.py
   scripts/tas_mmpose.py
   scripts/tas_hand.py
@@ -169,8 +167,6 @@ catkin_install_python(PROGRAMS
   scripts/tas_h_subscriber.py
   scripts/tas_hpo_integrator.py
   scripts/tas_MPF_applied.py
-  # scripts/tas_readiness_detector.py
-  # scripts/tas_trust_act_recognition.py  
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

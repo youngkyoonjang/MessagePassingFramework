@@ -5,7 +5,8 @@ import sys
 # sys.argv[0]="2_Switch_module_activation_and_assign_gpus.py"
 # sys.argv[1:]=["--pose", "F:1",
 #               "--object", "T:0",
-#               "--hand", "F:0"]
+#               "--hand", "F:0",
+#               "--gaze", "F:0"]
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Message Passing Framework')
