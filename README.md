@@ -100,3 +100,13 @@ python 0_Do_necessary_settings_build_and_run.py
 ## In case you want to use two PCs (1 GPU for each PC) on the same (WiFi) network:
 1. Set master and other PC URI
 2. (will be updating soon)
+	
+# References
+```
+@InProceedings{Jang2022MPF,  
+author = {Jang, Youngkyoon and Demiris, Yiannis},  
+title = {Message Passing Framework for Vision Prediction Stability in Human Robot Interaction},  
+booktitle = {IEEE International Conference on Robotics and Automation},  
+year = {2022}  
+}  
+```
