@@ -29,6 +29,7 @@ git clone https://github.com/youngkyoonjang/MessagePassingFramework.git
 ```python
 --pose F:0 --object T:0 --hand T:1 --gaze F:0
 ```
+* Because we need a person bounding box (which is an object detection result) as an input for pose estimation, the object module turns on automatically when the pose estimation module is activated.
 * Keep in mind that each model requires GPU memory to load their models, so you are only able to run modules depending on your GPU memory capacity.
 3. Do everything else: 
 ```python
@@ -124,6 +125,7 @@ wlp108s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
 ```python
 os.system('python 2_Switch_module_activation_and_assign_gpus.py --pose T:0 --object F:0 --hand F:0 --gaze F:0') ##Acvitate:T/F, gpu_id:0/1
 ```
+* The pose estimation and object detection modules must run on the same machine.
 4. Make sure the realsense camera launch script is COMMENTED out on the second PC:
 * If the realsense script in the 'main.launch' file under the <root>/tas_perception/launch folder is not commented out on the second PC:
 ```python
