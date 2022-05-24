@@ -106,12 +106,12 @@ ifconfig
 ```
 * In my case, I am connecting to a wifi network. Then it shows:
 ```
-wlp7s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-        inet 10.0.0.71  netmask 255.255.255.0  broadcast 10.0.0.255
-        inet6 fe80::55b9:dd5c:9925:874c  prefixlen 64  scopeid 0x20<link>
-        ether 00:0c:43:02:19:7d  txqueuelen 1000  (Ethernet)
+wlp108s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.0.0.136  netmask 255.255.255.0  broadcast 10.0.0.255
+        inet6 fe80::35ab:251a:6659:cdd  prefixlen 64  scopeid 0x20<link>
+        ether a4:b1:c1:81:b6:9f  txqueuelen 1000  (Ethernet)
 ```
-* Then, copy the ip: 10.0.0.71
+* Then, copy the ip: 10.0.0.136
 2. (will be updating soon)
 * For Master and second PCs, follow the same procedure written in the case of using single PC.
 	
