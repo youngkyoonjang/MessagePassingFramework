@@ -13,6 +13,19 @@ def replace_the_first_line(file_name, line):
                 cnt+=1
             else:
                 f.write(line)
+                
+def exchange_strings(file_name, txt_to_be_replaced, with_txt_given):
+    """ Insert given string as a new line at the beginning of a file """
+    with open(file_name, "r") as f:
+        contents = f.readlines()
+
+    with open(file_name, "w") as f:
+        for line in contents:
+            if '../../../../_base_' in line:
+                new_line = line.replace(txt_to_be_replaced, with_txt_given)
+                f.write(new_line)
+            else:
+                f.write(line)
 
 os.system('mkdir ./tas_perception/models')
 
@@ -29,7 +42,8 @@ if(os.path.isfile(models_directory_path+'/yolact_r101_1x8_coco_20200908-4cbe9101
 # Download MMPose model and configuration files: HRNet (Topdown Heatmap + Hrnet on Coco -- pose_hrnet_w48 256x192)
 if(os.path.isfile(models_directory_path+'/hrnet_w48_coco_256x192.py') == False):
     os.system('wget https://raw.githubusercontent.com/open-mmlab/mmpose/master/configs/body/2d_kpt_sview_rgb_img/topdown_heatmap/coco/hrnet_w48_coco_256x192.py -P ' + models_directory_path)
-    replace_the_first_line(models_directory_path+'/hrnet_w48_coco_256x192.py', "_base_ = ['../_base_/datasets/coco.py']")
+    # replace_the_first_line(models_directory_path+'/hrnet_w48_coco_256x192.py', "_base_ = ['../_base_/datasets/coco.py']")
+    exchange_strings(models_directory_path+'/hrnet_w48_coco_256x192.py', "../../../../_base_", "../_base_")
 
 if(os.path.isfile(models_directory_path+'/hrnet_w48_coco_256x192-b9e0b3ab_20200708.pth') == False):
     os.system('wget https://download.openmmlab.com/mmpose/top_down/hrnet/hrnet_w48_coco_256x192-b9e0b3ab_20200708.pth  -P ' + models_directory_path)
