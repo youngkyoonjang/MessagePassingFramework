@@ -14,6 +14,7 @@ res
 3. You need to install pip or pip3 (e.g., if you use python3, 'sudo apt-get install python3-pip')
 4. The code is designed to use 'python' command. If your OS only support python3, do 'Find & Replace' from 'python ' to 'python3 '.
 5. If you see error message related to'RuntimeError: Not compiled with GPU support' when testing --hand, you need to change stable version docker command.
+* If you have an error related to tas_hand.py, it might be the case of downloading model failure. In this case, please download the 'faster_rcnn_1_8_89999.pth' file directly from the [100DOH](https://github.com/ddshan/hand_object_detector) github repository. Then, put it in the <root>/tas_perception/hand_object/models/ folder.
 
 # Running Instruction: 
 1. Download github repository:
@@ -31,7 +32,12 @@ git clone https://github.com/youngkyoonjang/MessagePassingFramework.git
 ```
 * Because we need a person bounding box (which is an object detection result) as an input for pose estimation, the object module turns on automatically when the pose estimation module is activated.
 * Keep in mind that each model requires GPU memory to load their models, so you are only able to run modules depending on your GPU memory capacity.
-3. Do everything else: 
+3. Switch on/off example subscribers that you want to visualise:
+* If you want to visualise pose estimation topic subscribing results: 
+```python
+--pose T --object F --hand F --integration F --MPF F
+```
+4. Do everything else: 
 ```python
 python 0_Do_necessary_settings_build_and_run.py
 ```
@@ -85,14 +91,10 @@ os.system('python 2_Switch_module_activation_and_assign_gpus.py --pose F:0 --obj
 ```
 * Make sure you haven't touched any other scripts.
 
-5. Make sure the corresponding subscriber launch script is not commented out:
-* If the object subscriber (specifically in this example) script in the 'main.launch' file under the <root>/tas_perception/launch folder is commented out:
+5. Switch on the module you want to visualise subscribing results (e.g., object detection subscriber):
+* Edit '0_Do_necessary_settings_build_and_run.py' in the root folder
 ```python
-    <!-- <node pkg="tas_perception" type="tas_o_subscriber.py" name="tas_o_subscriber" /> -->
-```
-* Remove the comment:
-```python
-    <node pkg="tas_perception" type="tas_o_subscriber.py" name="tas_o_subscriber" />
+os.system('python 3_Switch_subscriber_activation.py --pose F --object T --hand F --integration F --MPF F') ##Acvitate:T/F
 ```
 6. Now ready to build docker image and run:
 ```python
@@ -143,15 +145,12 @@ os.system('python 2_Switch_module_activation_and_assign_gpus.py --pose T:0 --obj
 ```
 * Make sure you haven't touched any other scripts.
 
-5. Make sure the corresponding subscriber launch script is not commented out on the second GPU:
-* If the pose subscriber (specifically in this example) script in the 'main.launch' file under the <root>/tas_perception/launch folder is commented out:
+5. Switch on the module you want to visualise subscribing results (e.g., pose estimation subscriber):
+* Edit '0_Do_necessary_settings_build_and_run.py' in the root folder
 ```python
-    <!-- <node pkg="tas_perception" type="tas_p_subscriber.py" name="tas_p_subscriber" /> -->
+os.system('python 3_Switch_subscriber_activation.py --pose T --object F --hand F --integration F --MPF F') ##Acvitate:T/F
 ```
-* Remove the comment:
-```python
-    <node pkg="tas_perception" type="tas_p_subscriber.py" name="tas_p_subscriber" />
-```
+* You can subscribe for the topics published by other PCs on the same network.
 6. Now ready to build docker image and run:
 ```python
 python 0_Do_necessary_settings_build_and_run.py
