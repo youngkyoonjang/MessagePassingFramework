@@ -117,7 +117,7 @@ os.system('python 2_Switch_module_activation_and_assign_gpus.py --pose T:0 --obj
 ```
 * The pose estimation and object detection modules must run on the same machine.
 
-	4. Switch on the module you want to visualise subscribing results (e.g., pose estimation subscriber):
+4. Switch on the module you want to visualise subscribing results (e.g., pose estimation subscriber):
 * Edit '0_Do_necessary_settings_build_and_run.py' in the root folder
 ```python
 os.system('python 3_Switch_subscriber_activation.py --pose T --object F --hand F --integration F --MPF F') ##Acvitate:T/F
