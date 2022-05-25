@@ -31,7 +31,12 @@ git clone https://github.com/youngkyoonjang/MessagePassingFramework.git
 ```
 * Because we need a person bounding box (which is an object detection result) as an input for pose estimation, the object module turns on automatically when the pose estimation module is activated.
 * Keep in mind that each model requires GPU memory to load their models, so you are only able to run modules depending on your GPU memory capacity.
-3. Do everything else: 
+3. Switch on/off example subscribers that you want to visualise:
+* If you want to visualise pose estimation topic subscribing results: 
+```python
+--pose T --object F --hand F --integration F --MPF F
+```
+5. Do everything else: 
 ```python
 python 0_Do_necessary_settings_build_and_run.py
 ```
