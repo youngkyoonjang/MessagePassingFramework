@@ -37,7 +37,12 @@ git clone https://github.com/youngkyoonjang/MessagePassingFramework.git
 ```python
 --pose T --object F --hand F --integration F --MPF F
 ```
-4. Do everything else: 
+4. Switch on/off the realsense camera launch script:
+* If you want to launch realsense camera on your machine: 
+```python
+--realsense T
+```
+5. Do everything else: 
 ```python
 python 0_Do_necessary_settings_build_and_run.py
 ```
