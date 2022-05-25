@@ -392,7 +392,6 @@ class TAS_Integrator_YJ:
                 if(self.body_json!=None):
                     body = self.integrated_data[0]['body']
                     
-                            
                 if(self.instance_json!=None):
                     instances = self.integrated_data[0]['instances']
 

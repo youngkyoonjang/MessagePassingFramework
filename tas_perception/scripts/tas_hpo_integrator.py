@@ -223,9 +223,15 @@ class TAS_Integrator_YJ:
                 self.img = self.img_tmp
                 
                 if(self.hand_json!=None):
-                
                     hand_states = self.integrated_data[0]['hand_states']
-                    mask_tmp_ = []
+                    
+                if(self.body_json!=None):
+                    body = self.integrated_data[0]['body']
+                    
+                if(self.instance_json!=None):
+                    instances = self.integrated_data[0]['instances']
+                
+                if(self.hand_json!=None and self.body_json!=None and self.instance_json!=None):
                     if(0<len(hand_states['hands'])):
                         for i in range(0, len(hand_states['hands'])):
                             individual_hand_info_tmp = hand_states['hands'][i]
@@ -255,12 +261,9 @@ class TAS_Integrator_YJ:
                             # Using cv2.putText() method
                             cv2.putText(self.img, text, org, self.font, self.fontScale, self.color, self.thickness, cv2.LINE_AA)
                         #################
-                        
-                if(self.body_json!=None):
-                    body = self.integrated_data[0]['body']
+                
                     
                     if(0<len(body)):
-                    
                         #########################################
                         for i in range(0, len(body)):
                             bbox = body[i]['bbox']
@@ -312,11 +315,8 @@ class TAS_Integrator_YJ:
                                 if(0.5<=keypoints[j][2]):
                                     cv2.circle(self.img, (int(keypoints[j][0]), int(keypoints[j][1])), 3, (0,255,0), -1)
                             
-                if(self.instance_json!=None):
-                    instances = self.integrated_data[0]['instances']
                     
                     if(0<len(instances)):
-                        
                         for i in range(0, len(instances['labels'])):
                             label = instances['labels'][i]
                             pred_box = instances['pred_boxes'][i]
