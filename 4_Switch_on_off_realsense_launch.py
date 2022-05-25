@@ -35,7 +35,7 @@ def main():
     args = parse_args()
 
     ## switching realsense_camera launch activation on and off    
-    switch_launch_modules_on_off('./tas_perception/launch/main.copy.launch', "realsense2_camera", args.realsense[:1])
+    switch_launch_modules_on_off('./tas_perception/launch/main.launch', "realsense2_camera", args.realsense[:1])
 
 if __name__ == '__main__':
     main()
