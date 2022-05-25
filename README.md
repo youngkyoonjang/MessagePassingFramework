@@ -90,14 +90,10 @@ os.system('python 2_Switch_module_activation_and_assign_gpus.py --pose F:0 --obj
 ```
 * Make sure you haven't touched any other scripts.
 
-5. Make sure the corresponding subscriber launch script is not commented out:
-* If the object subscriber (specifically in this example) script in the 'main.launch' file under the <root>/tas_perception/launch folder is commented out:
+5. Switch on the module you want to visualise subscribing results (e.g., object detection subscriber):
+* Edit '0_Do_necessary_settings_build_and_run.py' in the root folder
 ```python
-    <!-- <node pkg="tas_perception" type="tas_o_subscriber.py" name="tas_o_subscriber" /> -->
-```
-* Remove the comment:
-```python
-    <node pkg="tas_perception" type="tas_o_subscriber.py" name="tas_o_subscriber" />
+os.system('python 3_Switch_subscriber_activation.py --pose F --object T --hand F --integration F --MPF F') ##Acvitate:T/F
 ```
 6. Now ready to build docker image and run:
 ```python
@@ -148,15 +144,12 @@ os.system('python 2_Switch_module_activation_and_assign_gpus.py --pose T:0 --obj
 ```
 * Make sure you haven't touched any other scripts.
 
-5. Make sure the corresponding subscriber launch script is not commented out on the second GPU:
-* If the pose subscriber (specifically in this example) script in the 'main.launch' file under the <root>/tas_perception/launch folder is commented out:
+5. Switch on the module you want to visualise subscribing results (e.g., pose estimation subscriber):
+* Edit '0_Do_necessary_settings_build_and_run.py' in the root folder
 ```python
-    <!-- <node pkg="tas_perception" type="tas_p_subscriber.py" name="tas_p_subscriber" /> -->
+os.system('python 3_Switch_subscriber_activation.py --pose T --object F --hand F --integration F --MPF F') ##Acvitate:T/F
 ```
-* Remove the comment:
-```python
-    <node pkg="tas_perception" type="tas_p_subscriber.py" name="tas_p_subscriber" />
-```
+* You can subscribe for the topics published by other PCs on the same network.
 6. Now ready to build docker image and run:
 ```python
 python 0_Do_necessary_settings_build_and_run.py
