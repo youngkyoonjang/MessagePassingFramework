@@ -14,7 +14,7 @@ res
 3. You need to install pip or pip3 (e.g., if you use python3, 'sudo apt-get install python3-pip')
 4. The code is designed to use 'python' command. If your OS only support python3, do 'Find & Replace' from 'python ' to 'python3 '.
 5. If you see error message related to'RuntimeError: Not compiled with GPU support' when testing --hand, you need to change stable version docker command.
-* Sometimes, if there is an error related to tas_hand.py, it might be the case of downloading model failure. In this case, please download the 'faster_rcnn_1_8_89999.pth' file directly from the 100DOH github repository. Then, put it in the <root>/tas_perception/hand_object/models/ folder.
+* If you have an error related to tas_hand.py, it might be the case of downloading model failure. In this case, please download the 'faster_rcnn_1_8_89999.pth' file directly from the [100DOH](https://github.com/ddshan/hand_object_detector) github repository. Then, put it in the <root>/tas_perception/hand_object/models/ folder.
 
 # Running Instruction: 
 1. Download github repository:
