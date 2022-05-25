@@ -74,27 +74,15 @@ wlp7s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
 ```python
 os.system('python 2_Switch_module_activation_and_assign_gpus.py --pose F:0 --object T:0 --hand F:0 --gaze F:0') ##Acvitate:T/F, gpu_id:0/1
 ```
-4. Make sure the realsense camera launch script is not commented out:
-* If the realsense script in the 'main.launch' file under the <root>/tas_perception/launch folder is commented out:
-```python
-    <!-- <include file="$(find realsense2_camera)/launch/rs_camera.launch">
-        <arg name="align_depth" value="true"/>
-        <arg name="initial_reset" value="true"/>
-    </include> -->
-```
-* Remove the comment:
-```python
-    <include file="$(find realsense2_camera)/launch/rs_camera.launch">
-        <arg name="align_depth" value="true"/>
-        <arg name="initial_reset" value="true"/>
-    </include>
-```
-* Make sure you haven't touched any other scripts.
-
-5. Switch on the module you want to visualise subscribing results (e.g., object detection subscriber):
+4. Switch on the module you want to visualise subscribing results (e.g., object detection subscriber):
 * Edit '0_Do_necessary_settings_build_and_run.py' in the root folder
 ```python
 os.system('python 3_Switch_subscriber_activation.py --pose F --object T --hand F --integration F --MPF F') ##Acvitate:T/F
+```
+5. Switch on the realsense camera launch script:
+* Edit '0_Do_necessary_settings_build_and_run.py' in the root folder
+```python
+    os.system('python 4_Switch_on_off_realsense_launch.py --realsense T') ##Acvitate:T/F
 ```
 6. Now ready to build docker image and run:
 ```python
@@ -128,29 +116,20 @@ wlp108s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
 os.system('python 2_Switch_module_activation_and_assign_gpus.py --pose T:0 --object F:0 --hand F:0 --gaze F:0') ##Acvitate:T/F, gpu_id:0/1
 ```
 * The pose estimation and object detection modules must run on the same machine.
-4. Make sure the realsense camera launch script is COMMENTED out on the second PC:
-* If the realsense script in the 'main.launch' file under the <root>/tas_perception/launch folder is not commented out on the second PC:
-```python
-    <include file="$(find realsense2_camera)/launch/rs_camera.launch">
-        <arg name="align_depth" value="true"/>
-        <arg name="initial_reset" value="true"/>
-    </include>    
-```
-* Comment out only on the second PC:
-```python
-    <!-- <include file="$(find realsense2_camera)/launch/rs_camera.launch">
-        <arg name="align_depth" value="true"/>
-        <arg name="initial_reset" value="true"/>
-    </include> -->
-```
-* Make sure you haven't touched any other scripts.
 
-5. Switch on the module you want to visualise subscribing results (e.g., pose estimation subscriber):
+	4. Switch on the module you want to visualise subscribing results (e.g., pose estimation subscriber):
 * Edit '0_Do_necessary_settings_build_and_run.py' in the root folder
 ```python
 os.system('python 3_Switch_subscriber_activation.py --pose T --object F --hand F --integration F --MPF F') ##Acvitate:T/F
 ```
 * You can subscribe for the topics published by other PCs on the same network.
+	
+5. Switch off the realsense camera launch script:
+* Edit '0_Do_necessary_settings_build_and_run.py' in the root folder
+```python
+    os.system('python 4_Switch_on_off_realsense_launch.py --realsense F') ##Acvitate:T/F
+```
+	
 6. Now ready to build docker image and run:
 ```python
 python 0_Do_necessary_settings_build_and_run.py
