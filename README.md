@@ -36,7 +36,7 @@ git clone https://github.com/youngkyoonjang/MessagePassingFramework.git
 ```python
 --pose T --object F --hand F --integration F --MPF F
 ```
-5. Do everything else: 
+4. Do everything else: 
 ```python
 python 0_Do_necessary_settings_build_and_run.py
 ```
