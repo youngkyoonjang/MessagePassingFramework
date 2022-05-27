@@ -15,7 +15,7 @@ run:
 		-v /etc/hosts:/etc/hosts \
 		-e ROS_MASTER_URI=http://10.0.0.107:11311 \
 		-e ROS_IP=10.0.0.107 \
-		-v /media/DataDisk/yj_bitbucket/dev/MessagePassingFramework/tas_perception/:/ros-ws/src/tas_perception/ \
+		-v tas_perception:/ros-ws/src/tas_perception/ \
 		--network host \
 		--privileged \
 		--runtime=nvidia \
