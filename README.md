@@ -82,7 +82,7 @@ os.system(my_python_path + ' 2_Switch_module_activation_and_assign_gpus.py --pos
 4. Switch on the module you want to visualise subscribing results (e.g., object detection subscriber):
 * Edit '0_Do_necessary_settings_build_and_run.py' in the root folder
 ```python
-os.system('python 3_Switch_subscriber_activation.py --pose F --object T --hand F --integration F --MPF F') ##Acvitate:T/F
+os.system(my_python_path + 3_Switch_subscriber_activation.py --pose F --object T --hand F --integration F --MPF F') ##Acvitate:T/F
 ```
 5. Switch on the realsense camera launch script:
 * Edit '0_Do_necessary_settings_build_and_run.py' in the root folder
@@ -132,7 +132,7 @@ os.system(my_python_path + ' 3_Switch_subscriber_activation.py --pose T --object
 5. Switch off the realsense camera launch script:
 * Edit '0_Do_necessary_settings_build_and_run.py' in the root folder
 ```python
-    os.system('python 4_Switch_on_off_realsense_launch.py --realsense F') ##Acvitate:T/F
+os.system(my_python_path + 4_Switch_on_off_realsense_launch.py --realsense F') ##Acvitate:T/F
 ```
 	
 6. Now ready to build docker image and run:
