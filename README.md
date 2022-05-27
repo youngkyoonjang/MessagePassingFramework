@@ -12,7 +12,7 @@ res
 1. Install Docker: https://docs.docker.com/engine/install/ubuntu/
 2. If you cannot clone this repository using 'git clone', please download the entire repository. It happens because it is currently private.
 3. You need to install pip or pip3 (e.g., if you use python3, 'sudo apt-get install python3-pip')
-4. The code is designed to use 'python' command. If your OS only support python3, do 'Find & Replace' from 'python ' to 'python3 '.
+4. The code is designed to use 'python' command. If your OS only support python3, do 'python3' instead of 'python' in the command line.
 5. If you see error message related to'RuntimeError: Not compiled with GPU support' when testing --hand, you need to change stable version docker command.
 * If you have an error related to tas_hand.py, it might be the case of downloading model failure. In this case, please download the 'faster_rcnn_1_8_89999.pth' file directly from the [100DOH](https://github.com/ddshan/hand_object_detector) github repository. Then, put it in the <root>/tas_perception/hand_object/models/ folder.
 
@@ -39,7 +39,7 @@ git clone https://github.com/youngkyoonjang/MessagePassingFramework.git
 ```
 4. Do everything else: 
 ```python
-python 0_Do_necessary_settings_build_and_run.py
+python( or python3) 0_Do_necessary_settings_build_and_run.py
 ```
 * Please be patient. Building a Docker image for the first time can take an hour or more (or less). However, it does not rebuild the prebuilt image from the second attempt. So it runs very fast from the second trial.
 
@@ -72,7 +72,7 @@ wlp7s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
 3. Turn on the module you want to test (e.g., object detection module running on the first (only) GPU):
 * Edit '0_Do_necessary_settings_build_and_run.py' in the root folder
 ```python
-os.system('python 2_Switch_module_activation_and_assign_gpus.py --pose F:0 --object T:0 --hand F:0 --gaze F:0') ##Acvitate:T/F, gpu_id:0/1
+os.system(my_python_path + ' 2_Switch_module_activation_and_assign_gpus.py --pose F:0 --object T:0 --hand F:0 --gaze F:0') ##Acvitate:T/F, gpu_id:0/1
 ```
 4. Make sure the realsense camera launch script is not commented out:
 * If the realsense script in the 'main.launch' file under the <root>/tas_perception/launch folder is commented out:
@@ -94,11 +94,11 @@ os.system('python 2_Switch_module_activation_and_assign_gpus.py --pose F:0 --obj
 5. Switch on the module you want to visualise subscribing results (e.g., object detection subscriber):
 * Edit '0_Do_necessary_settings_build_and_run.py' in the root folder
 ```python
-os.system('python 3_Switch_subscriber_activation.py --pose F --object T --hand F --integration F --MPF F') ##Acvitate:T/F
+os.system(my_python_path + ' 3_Switch_subscriber_activation.py --pose F --object T --hand F --integration F --MPF F') ##Acvitate:T/F
 ```
 6. Now ready to build docker image and run:
 ```python
-python 0_Do_necessary_settings_build_and_run.py
+python( or python3) 0_Do_necessary_settings_build_and_run.py
 ```
 ## In case you want to use two PCs (1 GPU for each PC) on the same (WiFi) network:
 1. Check the IP address for the network (wifi or wired) you are currently connecting to:
@@ -125,7 +125,7 @@ wlp108s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
 3. Turn on the module you want to test (For second PC, for example, pose estimation module running on the first (only) GPU):
 * Edit '0_Do_necessary_settings_build_and_run.py' in the root folder
 ```python
-os.system('python 2_Switch_module_activation_and_assign_gpus.py --pose T:0 --object F:0 --hand F:0 --gaze F:0') ##Acvitate:T/F, gpu_id:0/1
+os.system(my_python_path + ' 2_Switch_module_activation_and_assign_gpus.py --pose T:0 --object F:0 --hand F:0 --gaze F:0') ##Acvitate:T/F, gpu_id:0/1
 ```
 * The pose estimation and object detection modules must run on the same machine.
 4. Make sure the realsense camera launch script is COMMENTED out on the second PC:
@@ -148,12 +148,12 @@ os.system('python 2_Switch_module_activation_and_assign_gpus.py --pose T:0 --obj
 5. Switch on the module you want to visualise subscribing results (e.g., pose estimation subscriber):
 * Edit '0_Do_necessary_settings_build_and_run.py' in the root folder
 ```python
-os.system('python 3_Switch_subscriber_activation.py --pose T --object F --hand F --integration F --MPF F') ##Acvitate:T/F
+os.system(my_python_path + ' 3_Switch_subscriber_activation.py --pose T --object F --hand F --integration F --MPF F') ##Acvitate:T/F
 ```
 * You can subscribe for the topics published by other PCs on the same network.
 6. Now ready to build docker image and run:
 ```python
-python 0_Do_necessary_settings_build_and_run.py
+python( or python3) 0_Do_necessary_settings_build_and_run.py
 ```
 * Make sure the master PC is running before you run the second PC
 	
