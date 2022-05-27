@@ -141,9 +141,9 @@ python( or python3) 0_Do_necessary_settings_build_and_run.py
 ```
 * Make sure the master PC is running before you run the second PC
 # To-do list
-[x] Resolve 'hand-object detector' model download  issue: it currently often fails to download the model from Google Drive automatically. I may need to put it somewhere else and then put other script download file automatically. At the moment, you can download directly from the origianl 100DOH repository.
-[ ] Resolve 'hand-object detector's nms_uti-related issue. I am figuring out how to avoid this while installing it in Docker.
-[ ] Put explicit example case, how to turn of MPF. Simply, when switching on pose, object, hand modules (with proper splitting modules into two gpus) and switching on mpf subscriber only, it is able to run MPF on the subscriber script. <- it all depends on your choice of deciding which modules run on which GPUs and which PC will run the mpf subscriber.
+- [ ] Resolve 'hand-object detector' model download  issue: it currently often fails to download the model from Google Drive automatically. I may need to put it somewhere else and then put other script download file automatically. At the moment, you can download directly from the origianl 100DOH repository.
+- [ ] Resolve 'hand-object detector's nms_uti-related issue. I am figuring out how to avoid this while installing it in Docker.
+- [ ] Put explicit example case, how to turn of MPF. Simply, when switching on pose, object, hand modules (with proper splitting modules into two gpus) and switching on mpf subscriber only, it is able to run MPF on the subscriber script. <- it all depends on your choice of deciding which modules run on which GPUs and which PC will run the mpf subscriber.
 	
 # References
 ```
