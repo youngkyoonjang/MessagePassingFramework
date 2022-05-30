@@ -1,5 +1,4 @@
 # MessagePassingFramework
-Message Passing Framework for Vision Prediction Stability in HRI
 This is the code to accompany the paper “Message Passing Framework for Vision Prediction Stability in Human Robot Interaction, ICRA 2022”; if you find this code useful, we would appreciate it if you cite this paper.
 
 # Requirements 
