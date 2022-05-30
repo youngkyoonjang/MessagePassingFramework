@@ -1,5 +1,5 @@
 # MessagePassingFramework
-This is the code to accompany the paper “[Message Passing Framework](https://sites.google.com/view/mpf-hri/home){:target="_blank"} for Vision Prediction Stability in Human Robot Interaction, ICRA 2022”; if you find this code useful, we would appreciate it if you cite this paper.
+This is the code to accompany the paper “[Message Passing Framework](https://sites.google.com/view/mpf-hri/home){:target="\_blank"} for Vision Prediction Stability in Human Robot Interaction, ICRA 2022”; if you find this code useful, we would appreciate it if you cite this paper.
 
 # Requirements 
 RGB-D camera is required.
