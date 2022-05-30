@@ -9,11 +9,12 @@ Specifically we have tested using following devices:
 - PyTorch version: 1.8.2+cu111
 res
 # Prerequisite (or note): 
-1. Install Docker: https://docs.docker.com/engine/install/ubuntu/
-2. If you cannot clone this repository using 'git clone', please download the entire repository. It happens because it is currently private.
-3. You need to install pip or pip3 (e.g., if you use python3, 'sudo apt-get install python3-pip')
-4. The code is designed to use 'python' command. If your OS only support python3, do **use 'python3' instead of 'python' in the command line**. 
-5. If you see error message related to'RuntimeError: Not compiled with GPU support' when testing --hand, you need to change stable version docker command.
+1. Install **Docker**: https://docs.docker.com/engine/install/ubuntu/
+2. Install **NVIDIA-Docker**
+3. If you cannot clone this repository using 'git clone', please download the entire repository. It happens because it is currently private.
+4. You need to install pip or pip3 (e.g., if you use python3, 'sudo apt-get install python3-pip')
+5. The code is designed to use 'python' command. If your OS only support python3, do **use 'python3' instead of 'python' in the command line**. 
+6. If you see error message related to'RuntimeError: Not compiled with GPU support' when testing --hand, you need to change stable version docker command.
 * If you have an error related to tas_hand.py, it might be the case of downloading model failure. In this case, please download the 'faster_rcnn_1_8_89999.pth' file directly from the [100DOH](https://github.com/ddshan/hand_object_detector) github repository. Then, put it in the <root>/tas_perception/hand_object/models/ folder.
 
 # Running Instruction: 
