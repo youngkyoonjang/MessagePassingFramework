@@ -1,5 +1,5 @@
 # MessagePassingFramework
-This is the code to accompany the paper “[Message Passing Framework](https://sites.google.com/view/mpf-hri/home){:target="_blank" rel="noopener"} for Vision Prediction Stability in Human Robot Interaction, ICRA 2022”; if you find this code useful, we would appreciate it if you cite this paper.
+This is the code to accompany the paper “[Message Passing Framework](https://sites.google.com/view/mpf-hri/home){:target="_blank"} for Vision Prediction Stability in Human Robot Interaction, ICRA 2022”; if you find this code useful, we would appreciate it if you cite this paper.
 
 # Requirements 
 RGB-D camera is required.
@@ -9,12 +9,12 @@ Specifically we have tested using following devices:
 - PyTorch version: 1.8.2+cu111
 res
 # Prerequisite (or note): 
-1. [Install **Docker**](https://docs.docker.com/engine/install/ubuntu/){:target="_blank" rel="noopener"}
-2. [Install **NVIDIA-Docker**](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html){:target="_blank" rel="noopener"}
+1. [Install **Docker**](https://docs.docker.com/engine/install/ubuntu/){:target="_blank"}
+2. [Install **NVIDIA-Docker**](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html){:target="_blank"}
 3. You need to install pip or pip3 (e.g., if you use python3, 'sudo apt-get install python3-pip')
 4. The code is designed to use 'python' command. If your OS only support python3, do **use 'python3' instead of 'python' in the command line**. 
 5. If you see error message related to'RuntimeError: Not compiled with GPU support' when testing --hand, you need to change stable version docker command.
-* If you have an error related to tas_hand.py, it might be the case of downloading model failure. In this case, please download the 'faster_rcnn_1_8_89999.pth' file directly from the [100DOH](https://github.com/ddshan/hand_object_detector){:target="_blank" rel="noopener"} github repository. Then, put it in the <root>/tas_perception/hand_object/models/ folder.
+* If you have an error related to tas_hand.py, it might be the case of downloading model failure. In this case, please download the 'faster_rcnn_1_8_89999.pth' file directly from the [100DOH](https://github.com/ddshan/hand_object_detector){:target="_blank"} github repository. Then, put it in the <root>/tas_perception/hand_object/models/ folder.
 
 # Running Instruction: 
 1. Download github repository:
@@ -144,7 +144,7 @@ python( or python3) 0_Do_necessary_settings_build_and_run.py
 - [ ] Resolve 'hand-object detector' model download  issue: it currently often fails to download the model from Google Drive automatically. I may need to put it somewhere else and then put other script download file automatically. At the moment, you can download directly from the origianl 100DOH repository.
 - [x] Resolve 'hand-object detector's 'nms_thresh'-related issue. The error was 'RuntimeError: Not compiled with GPU support'. This was resolved by putting lines to make sure nvidia-docker is installed before building docker.
 - [ ] Put explicit example case, how to turn of MPF. Simply, when switching on pose, object, hand modules (with proper splitting modules into two gpus) and switching on mpf subscriber only, it is able to run MPF on the subscriber script. <- it all depends on your choice of deciding which modules run on which GPUs and which PC will run the mpf subscriber.
-- [ ] Update references when this repository uses more recent vision modules such as [RT-GENE](https://github.com/Tobias-Fischer/rt_gene){:target="_blank" rel="noopener"}, which is not mentioned in the Message Passing Frameowrk (ICRA22) paper. This repository will be updated by adopting the state-of-the-art modules. So, the methods (or pretrained models) used in this repository may be different from what MPF paper describes. To reflect this, I will update when there are other modules being used after ICRA 22 presentation.
+- [ ] Update references when this repository uses more recent vision modules such as [RT-GENE](https://github.com/Tobias-Fischer/rt_gene){:target="_blank"}, which is not mentioned in the Message Passing Frameowrk (ICRA22) paper. This repository will be updated by adopting the state-of-the-art modules. So, the methods (or pretrained models) used in this repository may be different from what MPF paper describes. To reflect this, I will update when there are other modules being used after ICRA 22 presentation.
 	
 # References
 ```
