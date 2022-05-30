@@ -9,8 +9,8 @@ Specifically we have tested using following devices:
 - PyTorch version: 1.8.2+cu111
 res
 # Prerequisite (or note): 
-1. Install **Docker**: https://docs.docker.com/engine/install/ubuntu/
-2. Install **NVIDIA-Docker**
+1. [Install **Docker**](https://docs.docker.com/engine/install/ubuntu/)
+2. [Install **NVIDIA-Docker**](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
 3. If you cannot clone this repository using 'git clone', please download the entire repository. It happens because it is currently private.
 4. You need to install pip or pip3 (e.g., if you use python3, 'sudo apt-get install python3-pip')
 5. The code is designed to use 'python' command. If your OS only support python3, do **use 'python3' instead of 'python' in the command line**. 
