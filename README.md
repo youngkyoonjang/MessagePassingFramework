@@ -10,7 +10,7 @@ Specifically we have tested using following devices:
 res
 # Prerequisite (or note): 
 1. [Install **Docker**](https://docs.docker.com/engine/install/ubuntu/)
-2. [Install **NVIDIA-Docker**](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
+2. [Install **NVIDIA-Docker**](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html), then **reboot** your PC.
 3. You need to install pip or pip3 (e.g., if you use python3, 'sudo apt-get install python3-pip')
 4. The code is designed to use 'python' command. If your OS only support python3, do **use 'python3' instead of 'python' in the command line**. 
 5. If you have an error related to tas_hand.py, it might be the case of downloading model failure. In this case, please download the 'faster_rcnn_1_8_89999.pth' file directly from the [100DOH](https://github.com/ddshan/hand_object_detector) github repository. Then, put it in the <root>/tas_perception/hand_object/models/ folder.
