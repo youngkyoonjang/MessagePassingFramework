@@ -140,7 +140,7 @@ python( or python3) 0_Do_necessary_settings_build_and_run.py
 ```
 * Make sure the master PC is running before you run the second PC
 	
-## An MPF-applied use case
+## MPF-applied use case
 1. Make sure all modules (pose, object and hand) are running in your setting (either using multiple GPUs on one PC or multiple PCs).
 2. Switch on only the MPF subscriber in the '0_Do_necessary_settings_build_and_run.py':
 ```python
@@ -148,7 +148,7 @@ os.system(my_python_path + ' 3_Switch_subscriber_activation.py --pose F --object
 ```
 3. Set up objects of interest that you plan to interact with in your scenario (in 'tas_MPF_applied.py'):
 ```python
-	self.target_object_list=['cup', 'mouse', 'knife', 'keyboard', 'laptop'] ## set object list that you plan to interact
+self.target_object_list=['cup', 'mouse', 'knife', 'keyboard', 'laptop'] ## set object list that you plan to interact
 ```
 * The object you want to interact with must be one of the objects trained on the object detection module(e.g., [COCO](https://cocodataset.org/#home)).
 4. Launch the framework and interact with objects using your **right hand**.
@@ -168,6 +168,6 @@ booktitle = {IEEE International Conference on Robotics and Automation},
 year = {2022}  
 }  
 ```
-# Updated reference to the state-of-the-art vision modules used in this framework:
-* Gaze estimation:[RT-GENE](https://github.com/Tobias-Fischer/rt_gene), Tobias Fischer, Hyung Jin Chang and Yiannis Demiris, "RT-GENE: Real-Time Eye Gaze Estimation in Natural Environments," ECCV 2018.
-* Object detection: [YOLACT](https://github.com/dbolya/yolact), Daniel Bolya, Chong Zhou, Fanyi Xiao and Yong Jae Lee, "YOLACT: Real-time Instance Segmentation," ICCV 2019.
+### Updated reference to the state-of-the-art vision modules used in this framework:
+* Gaze estimation: Tobias Fischer, Hyung Jin Chang and Yiannis Demiris, "RT-GENE: Real-Time Eye Gaze Estimation in Natural Environments," ECCV 2018. [RT-GENE](https://github.com/Tobias-Fischer/rt_gene)
+* Object detection: Daniel Bolya, Chong Zhou, Fanyi Xiao and Yong Jae Lee, "YOLACT: Real-time Instance Segmentation," ICCV 2019. [YOLACT](https://github.com/dbolya/yolact)
